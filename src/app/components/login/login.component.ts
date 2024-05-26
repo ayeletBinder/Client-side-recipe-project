@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  signUp(name: HTMLInputElement,passWord: HTMLInputElement) {
+    if(name&&passWord){
+      
+    }
+  }
+  logIn(name: HTMLInputElement,passWord: HTMLInputElement) {
+    
+  }
 
 }
