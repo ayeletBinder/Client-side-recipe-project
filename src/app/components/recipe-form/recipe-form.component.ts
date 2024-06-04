@@ -30,15 +30,13 @@ export class RecipeFormComponent {
           products: new FormControl('', Validators.required)
         })]
     ),
-    instructions:new FormControl('',[Validators.required]),
+    ingredients:new FormControl('',[Validators.required]),
     images:new FormControl(),
     IsPrivate:new FormControl('',[Validators.required]),
 
   })
   categories: any[]=[{_id:1,description:'iiiiii'},{_id:1,description:'iiiiii'}];
   constructor(){
-    // console.log('rr', this.layers.length);
-
   }
   get layers():FormArray{
     return this.recipeForm.controls['layers'] as FormArray;
@@ -49,8 +47,8 @@ export class RecipeFormComponent {
   addLayer() {
     this.layers.push(
       new FormGroup({
-        description: new FormControl(),
-        products:new FormControl()
+        layersDescription: new FormControl('', Validators.required),
+        products: new FormControl('', Validators.required)
       })
     );
   }

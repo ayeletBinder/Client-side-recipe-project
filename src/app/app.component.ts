@@ -9,11 +9,15 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterModule,LoginComponent,RegisterComponent,RecipeFormComponent],
+  imports: [RouterOutlet,RouterModule,LoginComponent,RegisterComponent,RecipeFormComponent,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'angular-recipe-project';
   userService=inject(UsersService);
+  
+  logOut() {
+    this.userService.correctUser=undefined;
+  }
 }

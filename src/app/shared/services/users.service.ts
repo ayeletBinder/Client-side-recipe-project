@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 })
 export class UsersService {
   private _user:User[]=[];
+  logger={email:'',password:''};
   correctUser?:User;
   public get token():string|null{
     return localStorage.getItem('theToken');
@@ -17,6 +18,7 @@ export class UsersService {
       localStorage.setItem('theToken',token);
     }
   }
+  
   private http = inject(HttpClient);
   
   private userUrl=`${environment}/users`;

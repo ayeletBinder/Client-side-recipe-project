@@ -77,7 +77,6 @@
               <option *ngFor="let c of categories" id="c._id">{{c.description}}</option>
             </select> -->
             <mat-form-field>
-                <mat-label>Toppings</mat-label>
                 <mat-select formControlName="toppings" multiple>
                   @for (topping of toppingList; track topping) {
                     <mat-option [value]="topping">{{topping}}</mat-option>
@@ -100,8 +99,8 @@
            <p *ngIf="recipeForm.controls['DifficultyLevel'].value>5 || recipeForm.controls['DifficultyLevel'].value<1 ">רמת הקושי היא בין 1 ל 5</p> 
           </div>
         <div class="form-group">
-          <label for="recipeIngredients">הוראות הכנה:</label>
-          <textarea class="form-control" id="recipeIngredients" formControlName="recipeIngredients" rows="5" required></textarea>
+          <label >הוראות הכנה:</label>
+          <textarea class="form-control"  formControlName="ingredients" rows="5" required></textarea>
           <!-- <p *ngIf=" recipeForm.controls['instructions'].errors">שדה חובה</p> -->
         </div>
         <div class="form-group">
@@ -115,7 +114,7 @@
               <label for="">תיאור השכבה</label>
               <input type="text" formControlName="layersDescription" />
               <label for="">רשימת מוצרים לשכבה</label>
-              <textarea class="form-control" id="recipeIngredients" formControlName="products" rows="5" required></textarea>
+              <textarea class="form-control"  formControlName="products" rows="5" required></textarea>
               <hr>
             </div>
             <button (click)="addLayer()">add child</button>
@@ -123,7 +122,7 @@
         </div>
         <div class="form-group"> 
           <label for="recipeImage">תמונות:</label>
-                  <input type="file" class="form-control-file" id="recipeImages" formControlName="recipeImages" multiple>
+                  <input type="file" class="form-control-file" id="images" formControlName="images" multiple>
                   </div>
         <button type="submit" class="btn btn-primary">העלאה</button>
       </form>

@@ -4,6 +4,7 @@
       <h2>הרשמה</h2>
 <form ngForm #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     
+   {{password}}
       <div>
         <label>:שם </label>
         <input
@@ -31,8 +32,7 @@
         pattern=".+@.+\..+" 
         #emailModel="ngModel" 
         ngModel 
-        value={{email}} 
-        name="" 
+        name="email" 
         id=""
       >
       <div class="errors"  *ngIf="emailModel.dirty && emailModel.invalid">הקש מייל תקין</div>
@@ -45,7 +45,7 @@
       #passwordModel="ngModel" 
       ngModel 
       value={{password}} 
-      name="" 
+      name="password" 
       id=""
     >
       <div class="errors" *ngIf="passwordModel.dirty && passwordModel.errors">הקש סיסמה תקינה</div>

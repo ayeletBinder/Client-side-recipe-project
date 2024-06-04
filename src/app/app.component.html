@@ -1,19 +1,26 @@
 <!-- <app-login></app-login>
 <app-register></app-register> -->
 
-<nav>
-    <ul>
-        <li><a routerLink="">home</a></li>
-        <li><a routerLink="logIn">logIn</a></li>
-        <li><a routerLink="recipes">recipes</a></li>
-        <li><a routerLink="categories">categories</a></li>
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-brand">
+
+    <button *ngIf="this.userService.correctUser" routerLink="logOut" (click)="logOut()">logout</button>
+</div>
+    <a routerLink="">home</a>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" routerLink="logIn">logIn</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="signUp">signUp</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="recipes">recipes</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="categories">categories</a></li>
         @if (userService.token) {
-            <li><a routerLink="addRecipe">addRecipe</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="addRecipe">addRecipe</a></li>
         }
         @if (userService.correctUser?.role==="admin") {
-            <li><a routerLink="AllUsers">AllUsers</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="AllUsers">AllUsers</a></li>
         }
     </ul>
+</div>
 </nav>
 <router-outlet></router-outlet>
-<app-recipe-form></app-recipe-form>
+<!-- <app-recipe-form></app-recipe-form> -->

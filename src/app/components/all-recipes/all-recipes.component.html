@@ -1,1 +1,13 @@
-<p>all-recipes works!</p>
+<div class="recipe-page">
+@for (recipe of recipies; track $index) {
+  <div class="recipe-card" >
+
+       <img [src]="recipe.photo" alt="{{ recipe.name }}" class="recipe-photo">
+       <div class="recipe-content">
+         <h2 class="recipe-name">{{ recipe.name }}</h2>
+         <p class="recipe-description">{{ recipe.description }}</p>
+       </div>
+      </div>
+
+      }
+</div>

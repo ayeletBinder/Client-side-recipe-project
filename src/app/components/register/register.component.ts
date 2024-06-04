@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {FormGroup,FormArray,Validator,FormControl, Validators, FormBuilder, FormsModule, NgForm} from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
+import { UsersService } from '../../shared/services/users.service';
 
 @Component({
   selector: 'app-register',
@@ -16,14 +17,11 @@ export class RegisterComponent {
 
 
   constructor(private activatedRoute: ActivatedRoute,private fb: FormBuilder) { }
+  private userService=inject(UsersService);
 
-  email:string='';
-  password:string='';
-  ngOnInit() {
-    this.email = this.activatedRoute.snapshot.params['email'];  
-    this.password = this.activatedRoute.snapshot.params['password'];
-    console.log(this.email+" "+this.password);
-  }
+  email:string=this.userService.logger.email;
+  password:string=this.userService.logger.password;  
+  
   
 
   onSubmit(myform: NgForm) {

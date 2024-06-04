@@ -15,12 +15,11 @@ export class LoginComponent {
   constructor(private router:Router){
   }
   signUp(email: HTMLInputElement,password: HTMLInputElement) {
-    this.router.navigate(['/signUp', {email:email.value,password:password.value}]);
+    this.userService.logger = {email:email.value,password:password.value};
+    this.router.navigate(['/signUp']);
   }
   logIn(email: HTMLInputElement,password: HTMLInputElement) {
     this.userService.logIn({email :email.value , password: password.value})
-
-    
   }
   loginForm:FormGroup=new FormGroup({
 
