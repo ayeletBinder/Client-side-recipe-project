@@ -1,1 +1,70 @@
-<p>register works!</p>
+
+<div class="login-container">
+    <div class="login-form">
+      <h2>הרשמה</h2>
+<form ngForm #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    
+      <div>
+        <label>:שם </label>
+        <input
+          type="text"
+          name="name"
+          ngModel
+          #nameModel="ngModel"
+          required
+          minlength="3"
+        />
+
+      </div>
+      <div class="errors" *ngIf="nameModel.dirty && nameModel.errors">
+        <p *ngIf="nameModel.getError('required')">השדה הינו שדה חובה</p>
+        <p *ngIf="nameModel.getError('minlength')">
+            חסרים 
+            {{ nameModel.getError("minlength").requiredLength - nameModel.getError("minlength").actualLength }} 
+            תווים
+          </p>
+      </div>
+    <div>
+      <label>email: </label>
+      <input 
+        type="email" 
+        pattern=".+@.+\..+" 
+        #emailModel="ngModel" 
+        ngModel 
+        value={{email}} 
+        name="" 
+        id=""
+      >
+      <div class="errors"  *ngIf="emailModel.dirty && emailModel.invalid">הקש מייל תקין</div>
+    </div>
+    <div>
+      <label>password: </label>
+      <input 
+      type="password" 
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$" 
+      #passwordModel="ngModel" 
+      ngModel 
+      value={{password}} 
+      name="" 
+      id=""
+    >
+      <div class="errors" *ngIf="passwordModel.dirty && passwordModel.errors">הקש סיסמה תקינה</div>
+    </div>
+    <div>
+      <label>agree?  </label>
+      <input
+        type="checkbox"
+        name="agree"
+        ngModel
+        #agreeModel="ngModel"
+        requiredTrue
+      />
+    </div>
+    <div>
+      <button class="btn btn-primary" type="reset">ביטול</button>
+      <button  class="btn btn-primary" [disabled]="myForm.invalid">OK</button>  
+    </div>  
+</form>
+</div>
+</div>
+

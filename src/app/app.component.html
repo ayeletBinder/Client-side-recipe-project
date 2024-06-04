@@ -1,1 +1,19 @@
-<app-login></app-login>
+<!-- <app-login></app-login>
+<app-register></app-register> -->
+
+<nav>
+    <ul>
+        <li><a routerLink="">home</a></li>
+        <li><a routerLink="logIn">logIn</a></li>
+        <li><a routerLink="recipes">recipes</a></li>
+        <li><a routerLink="categories">categories</a></li>
+        @if (userService.token) {
+            <li><a routerLink="addRecipe">addRecipe</a></li>
+        }
+        @if (userService.correctUser?.role==="admin") {
+            <li><a routerLink="AllUsers">AllUsers</a></li>
+        }
+    </ul>
+</nav>
+<router-outlet></router-outlet>
+<app-recipe-form></app-recipe-form>
