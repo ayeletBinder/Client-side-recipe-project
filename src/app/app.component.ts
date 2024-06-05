@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UsersService } from './shared/services/users.service';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
+import { SearchPipe } from './shared/search.pipe';
 
 @Component({
   selector: 'app-root',
