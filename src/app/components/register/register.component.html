@@ -2,9 +2,11 @@
 <div class="login-container">
     <div class="login-form">
       <h2>הרשמה</h2>
+      <div *ngIf="" class="login-success-container">
+        <h4>משתמש זה קיים במערכת</h4>
+      </div>
 <form ngForm #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     
-   {{password}}
       <div>
         <label>:שם </label>
         <input

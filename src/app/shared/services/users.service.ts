@@ -27,7 +27,9 @@ export class UsersService {
     return this.http.get(this.userUrl); 
   }
   logIn(u:User) {
-    this.http.post<{user:User;token:string}>(`${this.userUrl}/signin`,u);
+    return this.http.post<{user:User;token:string}>(`${this.userUrl}/signin`,u);
   }
-  
+  signUp(u:User) {
+    return this.http.post<{user:User;token:string}>(`${this.userUrl}/signup`,u);
+  }
 }

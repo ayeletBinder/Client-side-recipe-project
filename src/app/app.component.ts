@@ -16,6 +16,7 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 export class AppComponent {
   title = 'angular-recipe-project';
   userService=inject(UsersService);
+moreFilter=true;
   
   logOut() {
     this.userService.correctUser=undefined;

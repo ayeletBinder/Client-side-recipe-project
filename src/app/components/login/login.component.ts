@@ -17,10 +17,20 @@ export class LoginComponent {
   signUp(email: HTMLInputElement,password: HTMLInputElement) {
     this.userService.logger = {email:email.value,password:password.value};
     this.router.navigate(['/signUp']);
+    console.log(this.userService.logger,"looger");
+    
   }
+
   logIn(email: HTMLInputElement,password: HTMLInputElement) {
+    console.log(email.value," ",password.value);
+    
     this.userService.logIn({email :email.value , password: password.value})
+    .subscribe((data)=>{
+      console.log(data);
+      this.userService.token=data.token;      
+    })
   }
+
   loginForm:FormGroup=new FormGroup({
 
   })

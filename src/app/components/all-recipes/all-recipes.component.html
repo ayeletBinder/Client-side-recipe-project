@@ -1,13 +1,22 @@
 <div class="recipe-page">
-@for (recipe of recipies; track $index) {
-  <div class="recipe-card" >
+<div class="search-box">
+  <input type="text"  placeholder=" חפש לפי שם מתכון..." />
+  <img src="../../../asset/search.png" alt="" />
+</div>
+<img src="../../../asset/search.png" alt="" />
 
-       <img [src]="recipe.photo" alt="{{ recipe.name }}" class="recipe-photo">
-       <div class="recipe-content">
-         <h2 class="recipe-name">{{ recipe.name }}</h2>
-         <p class="recipe-description">{{ recipe.description }}</p>
-       </div>
-      </div>
-
-      }
+<i class="fi fi-rr-settings-sliders"></i>
+<div  style="width: 30vw">
+  <button (click)="this.moreFilter = !this.moreFilter">
+    <img src="" alt="" />
+  </button>
+  <app-filter-recipes *ngIf="moreFilter"></app-filter-recipes>
+</div>
+<div class="recipes">
+  @for (r of recipies; track $index) {
+  <app-recipe class="cardRecipe" [recipe]="r"></app-recipe>
+  }
+</div>
+<button class="rounded-button" (click)="movePage(-1)"><</button>
+<button class="rounded-button" (click)="movePage(1)">></button>
 </div>

@@ -10,8 +10,8 @@ export class RecipesService {
   private recipes:Recipe[]=[];
   private http = inject(HttpClient);
   private recipesURL = `${environment.apiURL}/recipes`
-  getAllRecipe(){
-    return this.http.get(this.recipesURL);
+  getAllRecipe(search:string,page:number,perPage:number){
+    return this.http.get(`${this.recipesURL}?search=${search}&page=${page}&perPage=${perPage}`);
   }
   getRecipeByPreparationTime(time:number){
     return this.http.get(`$/time?time=${time}`)

@@ -1,10 +1,13 @@
-$primary-color: #cdc1a0;
 $secondary-color: #2c3e50;
 $text-color: #333333;
 $background-color: #f4f4f4;
 $white-color: #ffffff;
 
+
 .recipe-page{
+  background-color: $background-color;
+}
+.recipes{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,37 +15,66 @@ $white-color: #ffffff;
   // grid-template-columns: auto auto auto;
   // gap: 1.5rem;
   padding: 2rem;
-  background-color: $background-color;
 
-  .recipe-card {
-    background-color: $white-color;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    margin: 3%;
-    .recipe-photo {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+}
 
-    .recipe-content {
-      padding: 1rem;
+.cardRecipe{
+  background-color: $white-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+}
+/* search-box.component.scss */
 
-      .recipe-name {
-        font-size: 1.5rem;
-        color: $primary-color;
-        margin: 0;
-      }
+.search-box {
+  display: flex;
+  width: 300px; /* Adjust width as needed */
+  background-color: #fff;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
-      .recipe-description {
-        font-size: 1rem;
-        color: $text-color;
-        margin-top: 0.5rem;
-      }
-    }
+.search-box input[type="text"] {
+  flex: 1; /* Allow input to expand */
+  padding: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-box button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%; /* Round button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.search-box i.fas.fa-search {
+  font-size: 16px;
+}
+.rounded-button {
+  background-color: pink; /* Change color as needed */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px; /* Adjust for desired roundness */
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+
+  &:hover {
+    background-color: #655364; /* Darker color on hover */
   }
 }

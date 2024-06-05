@@ -1,5 +1,6 @@
 
 export interface Category{
+    _id:string
     description:String,
     recipes:[RecipeInCategory],//?
 }
