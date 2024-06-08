@@ -5,7 +5,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UsersService } from './shared/services/users.service';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
-import { SearchPipe } from './shared/search.pipe';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +16,10 @@ import { SearchPipe } from './shared/search.pipe';
 export class AppComponent {
   title = 'angular-recipe-project';
   userService=inject(UsersService);
-moreFilter=true;
-  
+  moreFilter=true;
+
   logOut() {
-    this.userService.correctUser=undefined;
+    this.userService.user={};
+    this.userService.token='';  
   }
 }

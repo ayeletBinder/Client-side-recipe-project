@@ -16,8 +16,10 @@ export class RecipesService {
   getRecipeByPreparationTime(time:number){
     return this.http.get(`$/time?time=${time}`)
   }
-  getRecipeById(id:string){
-    return this.http.get(`${this.recipesURL}/${id}`);
+  getRecipeById(id:string|null){
+    if(id!==null)
+      return this.http.get(`${this.recipesURL}/${id}`);
+    return null
   }
   addRecipe(r:Recipe){
     this.recipes.push(r);

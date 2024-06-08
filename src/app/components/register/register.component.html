@@ -2,11 +2,10 @@
 <div class="login-container">
     <div class="login-form">
       <h2>הרשמה</h2>
-      <div *ngIf="" class="login-success-container">
+      <div *ngIf="isExist" class="login-success-container">
         <h4>משתמש זה קיים במערכת</h4>
       </div>
 <form ngForm #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-    
       <div>
         <label>:שם </label>
         <input
@@ -51,6 +50,16 @@
       id=""
     >
       <div class="errors" *ngIf="passwordModel.dirty && passwordModel.errors">הקש סיסמה תקינה</div>
+    </div>
+    <div>
+      <label>address: </label>
+      <input 
+      type="address"  
+      #addressModel="ngModel" 
+      ngModel 
+      name="address" 
+      id=""
+    >
     </div>
     <div>
       <label>agree?  </label>

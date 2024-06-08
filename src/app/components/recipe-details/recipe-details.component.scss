@@ -1,0 +1,25 @@
+.grid-container-rows {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    background-color: #efe3bf;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: right;
+  }
+  .grid-container-columns {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #e8d9b9;
+    padding: 10px;
+  }
+  .products-div {
+    border-left: 2px solid ; 
+    margin-left:10vw ;
+
+}
+  

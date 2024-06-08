@@ -1,15 +1,16 @@
 <!-- <app-login></app-login>
 <app-register></app-register> -->
-
 <nav class="navbar">
     <div class="navbar-container">
         <div class="navbar-brand">
-
     <button *ngIf="this.userService.correctUser" routerLink="logOut" (click)="logOut()">logout</button>
 </div>
-    <a routerLink="">  <img src="../../../../public/search.png" alt="">
-    </a>
+    <!-- <a routerLink="">  <img src="../../../../public/search.png" alt="">
+    </a> -->
+    <div class="circle" *ngIf="userService.user"><p>{{userService.user?.name?.slice(0,1)}}</p></div>
+
     <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="userService.user"><a class="nav-link" (click)="logOut()">logOut</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="logIn">logIn</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="signUp">signUp</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="recipes">recipes</a></li>
@@ -24,4 +25,6 @@
 </div>
 </nav>
 <router-outlet></router-outlet>
+
+
 <!-- <app-recipe-form></app-recipe-form> -->

@@ -12,7 +12,7 @@ export const routes: Routes = [
     { path: 'logIn', component: LoginComponent },
     { path: 'signUp', component: RegisterComponent },
     { path: 'recipes', component: AllRecipesComponent },
-    { path: 'recipeDetail', component: RecipeDetailsComponent },
+    { path: 'recipeDetails/:id', component: RecipeDetailsComponent },
     // { path: 'categories', component: categories },
     { path: 'addRecipe', component: RecipeFormComponent ,canActivate: [authGuard] },
     { path: 'AllUsers', component: AllRecipesComponent, canActivate:[adminGuard]},

@@ -3,7 +3,6 @@
 <div class="login-container">
     <div class="login-form">
       <h2>התחברות</h2>
-      <form [formGroup]="loginForm">
         <div class="form-group">
           <label for="email">דוא"ל:</label>
           <input type="email" #email class="form-control" name="email" id="email"  required>
@@ -14,6 +13,5 @@
         </div>
         <button (click)="logIn(email,password)"  class="btn btn-primary">התחבר</button>
         <button (click)="signUp(email,password)" class="btn btn-primary">הרשם</button>
-      </form>
     </div>
   </div>

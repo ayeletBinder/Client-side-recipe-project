@@ -5,7 +5,8 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SearchPipe } from './shared/search.pipe';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),provideHttpClient(),ReactiveFormsModule,FormsModule,NgModule,CommonModule]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),provideHttpClient(),ReactiveFormsModule,FormsModule,NgModule,CommonModule,SearchPipe]
 };

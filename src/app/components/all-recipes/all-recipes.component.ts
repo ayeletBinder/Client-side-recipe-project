@@ -16,7 +16,7 @@ import { SearchPipe } from '../../shared/search.pipe';
 })
 export class AllRecipesComponent {
 
-
+  searchName:string=''
   indexPage:number=1;
   recipesService=inject(RecipesService);
   recipies:Recipe[]=[];
@@ -32,10 +32,18 @@ export class AllRecipesComponent {
     console.log("indexPage",this.indexPage,"index",index);
     if(index===1||this.indexPage!==1){
       this.indexPage+=index;
-      this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
+      this.recipesService.getAllRecipe(this.searchName,this.indexPage,12).subscribe((data)=>{
         this.recipies=data as any[];
         console.log(data);
       })
     }
   }
+  
+  search(search: string) {
+    this.searchName=search;
+    this.recipesService.getAllRecipe(search,1,12).subscribe((data)=>{
+      this.recipies=data as any[];
+  })
+  }
+
 }

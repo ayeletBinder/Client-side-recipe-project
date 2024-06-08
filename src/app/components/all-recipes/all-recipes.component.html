@@ -1,9 +1,10 @@
 <div class="recipe-page">
 <div class="search-box">
-  <input type="text"  placeholder=" חפש לפי שם מתכון..." [(ngModel)]="searchByName"/>
-  <img src="https://www.flaticon.com/free-icon-font/search_3917132" alt="" />
+  <input type="text"  placeholder=" חפש לפי שם מתכון..."  [(ngModel)]="searchByName"/>
+  <button (click)="search(searchByName)">חפש</button>
+  <!-- <img src="https://www.flaticon.com/free-icon-font/search_3917132" alt="" /> -->
 </div>
-<img src="../../../asset/search.png" alt="" />
+<!-- <img src="../../../asset/search.png" alt="" /> -->
 
 <i class="fi fi-rr-settings-sliders"></i>
 <div  style="width: 30vw">
@@ -13,7 +14,7 @@
   </button>
 </div>
 <div class="recipes">
-  @for (r of recipies | search : 'recipies' : recipies : "value" : searchByName ; track r._id) {
+  @for (r of recipies  ; track r._id) {
   <app-recipe class="cardRecipe" [recipe]="r"></app-recipe>
   }
 </div>
