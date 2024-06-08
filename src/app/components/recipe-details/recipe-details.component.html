@@ -4,7 +4,7 @@
     <!-- name -->
     <p></p>
     <!-- DifficultyLevel -->
-    <span></span>
+    <span>{{recipe.DifficultyLevel | starsDifficultyLevel : recipe.DifficultyLevel }}</span>
       <!-- description -->
     <p></p>
       <!-- images -->
@@ -14,30 +14,36 @@
     <div class="">
       <p>:אופן ההכנה</p>
       @for (i of instructions; track $index) {
-        <p>{{$index}}.</p>
-        <p>{{i}}</p>
+        <p> {{i}} .{{$index}}</p>
       }
     </div>
     <div class="">
         <!-- preparationTime -->
-        <p></p>
+        <span>preparationTime: </span>
+        <span>{{recipe.preparationTime}} </span>
         <!-- category -->
-        <p></p>
+        <span> category: </span>
+        @for (category of recipe.category; track $index) {
+        <span >{{category }} </span>
+        <span *ngIf="recipe.category.length-1!==$index">,</span>
+        }
       <p class="products-div">:רכיבים</p>
-
       <i data-lucide="cooking-pot"></i>
-      @for (l of this.recipe.layers; track l) {
+      @for (l of this.recipe.layers; track $index) {
         <!-- <lucide-icon name="cooking-pot"></lucide-icon> -->
         <i data-lucide="cooking-pot"></i>
         <h4>{{l.description}}</h4>
-        <!-- <p *ngFor="let p of l.products; track $index">{{p.products[$index]}}</p> -->
-      }
+        @for (pr of products; track $index) {
+        <p>{{pr}}</p>}
+        }
     </div>
   </div>
 </div>
-<button (click)="productsFunction()">products</button>
-<button (click)="instructionsFunction()">instructions</button>
+<button (click)="j()">products</button>
+<button (click)="p()">products</button>
+
 <!-- 
+
 Addeddate
 
 IsPrivate
