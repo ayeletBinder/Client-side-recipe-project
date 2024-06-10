@@ -20,7 +20,7 @@ export class AppComponent {
   moreFilter=true;
 
   logOut() {
-    this.userService.user={};
+    this.userService.user=null;
     this.userService.token='';  
   }
 }

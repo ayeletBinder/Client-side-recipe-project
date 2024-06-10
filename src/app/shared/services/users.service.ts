@@ -43,9 +43,9 @@ export class UsersService {
         console.error('Error saving user data:', error);
       }
     }
-    //  else {
-    //   localStorage.removeItem('theUser');
-    // }
+     else {
+      localStorage.removeItem('theUser');
+    }
   }
 
   private http = inject(HttpClient);
