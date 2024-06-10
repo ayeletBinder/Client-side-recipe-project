@@ -54,10 +54,10 @@
 <div>{{ recipeForm.errors | json }}</div>
  -->
 
- <div class="upload-recipe-container" >
+ <div class="upload-recipe-container"  >
     <div class="upload-recipe-form">
       <h2>העלאת מתכון</h2>
-      <form [formGroup]="recipeForm" >
+      <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="recipeTitle">שם המתכון:</label>
           <div>
@@ -71,18 +71,28 @@
           <input type="text" formControlName="description" />
         </div>
 
-        <div class="form-group">
-            <label for="recipeTags">קטגוריות:</label>
-            <!-- <select id="recipeTags" formControlName="recipeTags" class="form-control" multiple>
+        <div style="height: 40px;" class="select">
+          <mat-label>קטגוריות:</mat-label>
+
+            <!-- <mat-form-field>
+              <mat-select  formControlName="recipeTags" multiple>
+                @for (topping of categories; track topping) {
+                  <mat-option [id]="topping._id">{{topping.description}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field> -->
+            
+            <select id="recipeTags" formControlName="recipeTags" class="form-control select" multiple>
               <option *ngFor="let c of categories" id="c._id">{{c.description}}</option>
-            </select> -->
-            <mat-form-field>
-                <mat-select formControlName="toppings" multiple>
-                  @for (topping of toppingList; track topping) {
-                    <mat-option [value]="topping">{{topping}}</mat-option>
+            </select>
+            
+            <!-- <mat-form-field>
+                <mat-select formControlName="recipeTags" multiple>
+                  @for (c of categories; track $index) {
+                    <mat-option [value]="c">{{c.description}}</mat-option>
                   }
                 </mat-select>
-              </mat-form-field>
+              </mat-form-field> -->
           </div>
           
 
@@ -100,8 +110,8 @@
           </div>
         <div class="form-group">
           <label >הוראות הכנה:</label>
-          <textarea class="form-control"  formControlName="ingredients" rows="5" required></textarea>
-          <!-- <p *ngIf=" recipeForm.controls['instructions'].errors">שדה חובה</p> -->
+          <textarea class="form-control"  formControlName="instructions" rows="5" required></textarea>
+          <p *ngIf=" recipeForm.controls['instructions'].errors">שדה חובה</p>
         </div>
         <div class="form-group">
           <label >שכבות:</label>
@@ -120,12 +130,19 @@
             <button (click)="addLayer()">add child</button>
           </div>
         </div>
+        <div>
+          <label>פרטי?</label>
+          <input type="checkbox" formControlName="IsPrivate" />
+      </div> 
         <div class="form-group"> 
           <label for="recipeImage">תמונות:</label>
                   <input type="file" class="form-control-file" id="images" formControlName="images" multiple>
                   </div>
-        <button type="submit" class="btn btn-primary">העלאה</button>
+        <button type="submit"   class="btn btn-primary">העלאה</button>
       </form>
     </div>
   </div>
   
+<!--        
+        Addeddate?:Date,
+        user?:userInRecipe//? -->

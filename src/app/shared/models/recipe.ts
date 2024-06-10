@@ -1,14 +1,14 @@
 export interface Recipe{
         _id?:string,
-        name?:String,
-        description?:String,
-        category?:String,
-        preparationTime?:Number,
-        DifficultyLevel?:Number,
+        name?:string,
+        description?:string,
+        category?:string,
+        preparationTime?:number,
+        DifficultyLevel?:number,
         Addeddate?:Date,
-        layers?:[{description?:String,products?:String}],//?
-        instructions?:String,
-        images?:String,
+        layers?:[{description?:string,products?:string}],//?
+        instructions?:string,
+        images?:string,
         IsPrivate?:Boolean,
         user?:userInRecipe//?
 }

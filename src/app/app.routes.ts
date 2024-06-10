@@ -6,6 +6,7 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { adminGuard, authGuard } from './shared/guards/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -13,7 +14,7 @@ export const routes: Routes = [
     { path: 'signUp', component: RegisterComponent },
     { path: 'recipes', component: AllRecipesComponent },
     { path: 'recipeDetails/:id', component: RecipeDetailsComponent },
-    // { path: 'categories', component: categories },
+    { path: 'categories', component: CategoriesComponent },
     { path: 'addRecipe', component: RecipeFormComponent ,canActivate: [authGuard] },
     { path: 'AllUsers', component: AllRecipesComponent, canActivate:[adminGuard]},
 ];

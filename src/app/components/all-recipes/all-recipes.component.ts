@@ -22,6 +22,7 @@ export class AllRecipesComponent {
   recipies:Recipe[]=[];
   moreFilter=true;
   searchByName: string='';
+  
   ngOnInit(): void{
     this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
       this.recipies=data as any[];
@@ -46,4 +47,8 @@ export class AllRecipesComponent {
   })
   }
 
+  moreFilters(ev:{DifficultyLevel:number,selectCategory:any,time:number}){
+    console.log(ev.DifficultyLevel+'vvvvvvvvvvv'+ev.selectCategory+'00000'+ev.time+'vvvvvvvvvvv');
+  }
+  
 }

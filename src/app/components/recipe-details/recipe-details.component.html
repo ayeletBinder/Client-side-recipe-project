@@ -2,11 +2,12 @@
   <div ></div>
   <div class="grid-item">
     <!-- name -->
-    <p></p>
+    <p>{{recipe.name}}</p>
     <!-- DifficultyLevel -->
-    <span>{{recipe.DifficultyLevel | starsDifficultyLevel : recipe.DifficultyLevel }}</span>
-      <!-- description -->
-    <p></p>
+    <p>{{recipe.DifficultyLevel | starsDifficultyLevel  }}</p>
+    <!-- <ng-template *ngFor="let item of numbers"><span>{{item}}</span></ng-template> -->
+    <!-- description -->
+    <p>{{recipe.description}}</p>
       <!-- images -->
   <img src="../../shared/1.jpg" alt="tt" />
   </div>
@@ -20,12 +21,13 @@
     <div class="">
         <!-- preparationTime -->
         <span>preparationTime: </span>
-        <span>{{recipe.preparationTime}} </span>
+        <span>{{recipe.preparationTime | timeFormat}} </span>
         <!-- category -->
         <span> category: </span>
         @for (category of recipe.category; track $index) {
-        <span >{{category }} </span>
-        <span *ngIf="recipe.category.length-1!==$index">,</span>
+        <span >{{category}}</span>
+        <!-- *ngIf="recipe.category.length-1  !== $index" -->
+        <span >, </span>
         }
       <p class="products-div">:רכיבים</p>
       <i data-lucide="cooking-pot"></i>
@@ -33,14 +35,15 @@
         <!-- <lucide-icon name="cooking-pot"></lucide-icon> -->
         <i data-lucide="cooking-pot"></i>
         <h4>{{l.description}}</h4>
-        @for (pr of products; track $index) {
-        <p>{{pr}}</p>}
+        @for (pr of products[$index]; track $index) {
+            <p >{{pr}} -</p>}
         }
     </div>
   </div>
 </div>
-<button (click)="j()">products</button>
-<button (click)="p()">products</button>
+
+<!-- <button (click)="j()">products</button>
+<button (click)="p()">products</button> -->
 
 <!-- 
 

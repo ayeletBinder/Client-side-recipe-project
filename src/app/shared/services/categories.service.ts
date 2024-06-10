@@ -10,7 +10,7 @@ export class CategoriesService {
   private http = inject(HttpClient); 
   private categoriesURL = `${environment.apiURL}/categories`;
 
-  get GetAllCategories(){
+  GetAllCategories(){
     return this.http.get(`${this.categoriesURL}`);
   }
   GetAllCategoryWithRecipes(){
