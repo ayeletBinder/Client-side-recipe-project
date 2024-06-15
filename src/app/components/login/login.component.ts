@@ -29,7 +29,10 @@ export class LoginComponent {
       console.log(data);
       this.userService.token=data.token;
       this.userService.user=data.user;      
+
     })
+    console.log(" hhd "+this.userService.token+" hhd "+
+    this.userService.user);
     this.router.navigate(['recipes']);
 
   }

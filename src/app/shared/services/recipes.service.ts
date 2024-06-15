@@ -13,6 +13,9 @@ export class RecipesService {
   getAllRecipe(search:string,page:number,perPage:number){
     return this.http.get(`${this.recipesURL}?search=${search}&page=${page}&perPage=${perPage}`);
   }
+  getAllRecipeByUserId(id:string|undefined){
+    return this.http.get(`${this.recipesURL}/getByUserId/:${id}`);
+  }
   getRecipeByPreparationTime(time:number){
     return this.http.get(`$/time?time=${time}`)
   }

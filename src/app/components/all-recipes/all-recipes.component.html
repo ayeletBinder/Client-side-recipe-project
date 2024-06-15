@@ -1,17 +1,26 @@
 <div class="recipe-page">
 <div class="search-box">
   <input type="text"  placeholder=" חפש לפי שם מתכון..." (input)="search(searchByName)" [(ngModel)]="searchByName"/>
+  <input type="number"  placeholder="זמן מקסימאלי" (input)="searchByTimePreper(TimePreper)" [(ngModel)]="TimePreper"/>
+  <input type="text"  placeholder=" חפש לפי שם מתכון..." (input)="search(searchByName)" [(ngModel)]="searchByName"/>
+
   <!-- <img src="https://www.flaticon.com/free-icon-font/search_3917132" alt="" /> -->
 </div>
 <!-- <img src="../../../asset/search.png" alt="" /> -->
 
-<i class="fi fi-rr-settings-sliders"></i>
-<div  style="width: 30vw">
-  <app-filter-recipes *ngIf="moreFilter" (filters)="moreFilters($event)"></app-filter-recipes>
+
+
+
+<div *ngFor="let recipe of recipies">
+  <h3>{{ recipe.name }}</h3>
+  <p>Preparation Time: {{ recipe.preparationTime }} minutes</p>
+  <p>Category: {{ recipe.category }}</p>
+</div>
+
   <button (click)="this.moreFilter = !this.moreFilter">
     <img src="" alt="" />
   </button>
-</div>
+
 <div class="recipes">
   @for (r of recipies  ; track r._id) {
   <app-recipe class="cardRecipe" [recipe]="r"></app-recipe>

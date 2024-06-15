@@ -9,7 +9,8 @@ export class CategoriesService {
   private _category:Category[]=[];
   private http = inject(HttpClient); 
   private categoriesURL = `${environment.apiURL}/categories`;
-
+  categories?:Category[];
+  
   GetAllCategories(){
     return this.http.get(`${this.categoriesURL}`);
   }

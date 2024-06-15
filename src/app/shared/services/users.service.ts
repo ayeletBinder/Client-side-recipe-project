@@ -23,10 +23,9 @@ export class UsersService {
   
   public get user(): User | null {
     const userString = localStorage.getItem('theUser');
-    if (!userString) {
+    if (userString==='' || !userString) {
       return null;
     }
-  
     try {
       return JSON.parse(userString) as User;
     } catch (error) {
@@ -44,7 +43,7 @@ export class UsersService {
       }
     }
      else {
-      localStorage.removeItem('theUser');
+      localStorage.setItem('theUser','');
     }
   }
 
@@ -62,4 +61,8 @@ export class UsersService {
     return this.http.post<{user:User;token:string}>(`${this.userUrl}/signup`,u);
   }
 
+  isTokenExpired(){
+     const Expiry=(JSON.parse(atob(String(this.token).split('.')[1])).exp);
+     return Math.floor((new Date()).getTime()/1000)>=Expiry;
+  }
 }

@@ -61,10 +61,22 @@ export class RecipeFormComponent implements OnInit {
   recipe: Recipe = {};
   p=[];
   ngOnInit() {
-    this.categoriesService.GetAllCategories().subscribe((data) => {
-      this.categories = data as any[];
-    });
-    console.log('categories', this.categories);
+    if(this.categoriesService.categories==undefined){
+      this.categoriesService.GetAllCategories().subscribe((data)=>{
+        this.categories=data as any[];
+        this.categoriesService.categories?.push(...this.categories);
+        console.log(this.categoriesService.categories,'this.categoriesService.categories');
+        console.log(data,'data קריאת שרת');
+        console.log(this.usersService.correctUser,'this.usersService.correctUser');
+      })
+    }
+    else{
+      this.categories.push(...this.categoriesService.categories);
+      console.log(this.categories,'data קריאת שרת -ללא');
+      console.log(this.categoriesService.categories,'this.categoriesService.categories');
+
+
+    }
   }
 
   get layers(): FormArray {
