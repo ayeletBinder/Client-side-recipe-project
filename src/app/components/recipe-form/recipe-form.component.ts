@@ -58,7 +58,7 @@ export class RecipeFormComponent implements OnInit {
   });
   // { _id:"1",description:"ttt",recipes:[{_id:'11',name:"String",images:[""] }]}
   categories: Category[] = [];
-  recipe: Recipe = {};
+  recipe: Recipe = {preparationTime:0};
   p=[];
   ngOnInit() {
     if(this.categoriesService.categories==undefined){
