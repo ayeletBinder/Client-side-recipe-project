@@ -15,10 +15,10 @@ export class LoginComponent {
   constructor(private router:Router){
   }
   signUp(email: HTMLInputElement,password: HTMLInputElement) {
+    debugger
     this.userService.logger = {email:email.value,password:password.value};
     this.router.navigate(['/signUp']);
     console.log(this.userService.logger,"loger");
-    
   }
 
   logIn(email: HTMLInputElement,password: HTMLInputElement) {
@@ -29,10 +29,9 @@ export class LoginComponent {
       console.log(data);
       this.userService.token=data.token;
       this.userService.user=data.user;      
-
     })
     console.log(" hhd "+this.userService.token+" hhd "+
-    this.userService.user);
+    this.userService.user,this.userService.user?.name,"name");
     this.router.navigate(['recipes']);
 
   }

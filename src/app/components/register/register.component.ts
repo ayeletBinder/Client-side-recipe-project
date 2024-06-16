@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {FormGroup,FormArray,Validator,FormControl, Validators, FormBuilder, FormsModule, NgForm} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -14,15 +14,21 @@ import { User } from '../../shared/models/users';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  private userService=inject(UsersService);
+  email:string='';
+  password:   string='';
 
 
   constructor(private activatedRoute: ActivatedRoute,private fb: FormBuilder,private router:Router) { }
-  private userService=inject(UsersService);
+  ngOnInit(): void {
+    console.log(this.userService.logger,"loger");
+    
+    this.email=this.userService.logger.email;
+    this.password=this.userService.logger.password;   }
 
-  email:string=this.userService.logger.email;
-  password:string=this.userService.logger.password;  
-  isExist=true;
+ 
+  isExist=false;
   u:User={};
 
   onSubmit(myform: NgForm) {
@@ -35,13 +41,14 @@ export class RegisterComponent {
     this.userService.signUp(this.u)
     .subscribe((data)=>{
       console.log(data);
-      this.isExist=true;
       this.userService.token=data.token;
       this.userService.user=data.user;            
       this.router.navigate(['recipes']);
+    },(err)=>{
+        this.isExist=true;
     })
     //not secseed
-    
+
       //לאן לשלוח אותו???
     // console.log(myform);
   }

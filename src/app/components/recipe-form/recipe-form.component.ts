@@ -16,7 +16,6 @@ import { Category } from '../../shared/models/category';
 import { Recipe } from '../../shared/models/recipe';
 import { RecipesService } from '../../shared/services/recipes.service';
 import { UsersService } from '../../shared/services/users.service';
-
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
@@ -31,6 +30,23 @@ import { UsersService } from '../../shared/services/users.service';
   styleUrl: './recipe-form.component.scss',
 })
 export class RecipeFormComponent implements OnInit {
+// add() {
+//   debugger
+//   this.recipesService.addRecipe({
+//     name:"oooooooooooooooooo",
+//   description:"aaa",
+//   category:"9",
+//   preparationTime:50,
+//   DifficultyLevel:1,
+//   Addeddate:new Date(),
+//   layers:[{"description":"njyn","products":"y  y j  tj ig"}],
+//   instruction:"ug i.5hyvhu.j57. j7.",
+//   images:"an.png",
+//   IsPrivate:false,
+//   user:{name:"ayelet",_id:"663d0b74e155ea828a2594d4"}
+//   }).subscribe(response => {});
+
+// }
   categoriesService = inject(CategoriesService);
   recipesService = inject(RecipesService);
   usersService = inject(UsersService);
@@ -54,7 +70,7 @@ export class RecipeFormComponent implements OnInit {
     images: new FormControl(),
     IsPrivate: new FormControl('', [Validators.required]),
     recipeTags: new FormControl('', [Validators.required]),
-    instructions: new FormControl('', [Validators.required]),
+    instruction: new FormControl('', [Validators.required]),
   });
   // { _id:"1",description:"ttt",recipes:[{_id:'11',name:"String",images:[""] }]}
   categories: Category[] = [];
@@ -95,7 +111,6 @@ export class RecipeFormComponent implements OnInit {
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl(),
-      toppings: new FormControl(),
       preparationTime: new FormControl(60, [Validators.required]),
       DifficultyLevel: new FormControl('defult name', [
         Validators.required,
@@ -108,26 +123,30 @@ export class RecipeFormComponent implements OnInit {
           products: new FormControl('', Validators.required),
         }),
       ]),
-      ingredients: new FormControl('', [Validators.required]),
       images: new FormControl(),
       IsPrivate: new FormControl('', [Validators.required]),
       recipeTags: new FormControl('', [Validators.required]),
-      instructions: new FormControl('', [Validators.required]),
+      instruction: new FormControl('', [Validators.required]),
     });
 
   }
   onSubmit() {
-    // if (this.recipeForm.invalid) {
-    //   return; 
-    // }
+    debugger
+
+    if (this.recipeForm.invalid) {
+      return; 
+    }
     const formValue = this.recipeForm.value; 
-    this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instructions:formValue.instructions , 
+    this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instruction:formValue.instruction , 
               layers:[formValue.layers.map((obj:any) => ({ description:obj.layersDescription ,products:obj.products }))],
               IsPrivate:formValue.IsPrivate?true:false,images:formValue.images,user:{ _id: this.usersService.user?._id,name:this.usersService.user?.name }}
     console.log(this.recipe);
-    this.recipesService.addRecipe(this.recipe);
+    this.recipesService.addRecipe(this.recipe).subscribe(response => {
+      console.log('POST request successful:', response);
+    }, error => {
+      console.error('Error in POST request:', error);
+    });
   }
-
 }
 
 // _id?:string,

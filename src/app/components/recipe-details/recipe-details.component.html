@@ -1,43 +1,53 @@
 <div class="grid-container-rows">
-  <div ></div>
+  <div></div>
   <div class="grid-item">
-    <!-- name -->
-    <p>{{recipe.name}}</p>
-    <!-- DifficultyLevel -->
-    <p>{{recipe.DifficultyLevel | starsDifficultyLevel  }}</p>
+    <div class="grid-container-columns">
+      <!-- DifficultyLevel -->
+      <!-- <p>{{recipe.DifficultyLevel | starsDifficultyLevel  }}</p> -->
+
+      <span class="up-item" *ngFor="let _ of getArray(); let i = index">
+        <img src="../../../asset/images/2.JPG" alt="" />
+        *
+      </span>
+      <!-- name -->
+      <p class="up-item">{{ recipe.name }}</p>
+    </div>
     <!-- <ng-template *ngFor="let item of numbers"><span>{{item}}</span></ng-template> -->
     <!-- description -->
-    <p>{{recipe.description}}</p>
-      <!-- images -->
-  <img src="../../shared/1.jpg" alt="tt" />
+    <p>{{ recipe.description }}</p>
+    <!-- images -->
+    <img src="../../shared/1.jpg" alt="tt" />
   </div>
-  <div class="grid-item grid-container-columns ">
+  <div class="grid-item grid-container-columns">
     <div class="">
       <p>:אופן ההכנה</p>
-      @for (i of instructions; track $index) {
-        <p> {{i}} .{{$index}}</p>
+      @for (i of instruction; track $index) {
+      <p>{{ i }} .{{ $index }}</p>
       }
     </div>
     <div class="">
-        <!-- preparationTime -->
-        <span>preparationTime: </span>
-        <span>{{recipe.preparationTime | timeFormat}} </span>
+      <!-- preparationTime -->
+      <span>זמן הכנה: </span>
+      <span>{{ recipe.preparationTime | timeFormat }} </span>
+      <p>
         <!-- category -->
-        <span> category: </span>
         @for (category of recipe.category; track $index) {
-        <span >{{category}}</span>
-        <!-- *ngIf="recipe.category.length-1  !== $index" -->
+        <span>{{ category }}</span>
+        <!-- *ngIf="let _ of getArr() !== $index" -->
         <span >, </span>
+        <span> :קטגוריה </span>
+
         }
+      </p>
       <p class="products-div">:רכיבים</p>
       <i data-lucide="cooking-pot"></i>
       @for (l of this.recipe.layers; track $index) {
-        <!-- <lucide-icon name="cooking-pot"></lucide-icon> -->
-        <i data-lucide="cooking-pot"></i>
-        <h4>{{l.description}}</h4>
-        @for (pr of products[$index]; track $index) {
-            <p >{{pr}} -</p>}
-        }
+      <!-- <lucide-icon name="cooking-pot"></lucide-icon> -->
+      <i data-lucide="cooking-pot"></i>
+      <h4>{{ l.description }}</h4>
+      @for (pr of products[$index]; track $index) {
+      <p>{{ pr }} -</p>
+      } }
     </div>
   </div>
 </div>

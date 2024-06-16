@@ -16,7 +16,6 @@
           required
           minlength="3"
         />
-
       </div>
       <div class="errors" *ngIf="nameModel.dirty && nameModel.errors">
         <p *ngIf="nameModel.getError('required')">השדה הינו שדה חובה</p>
@@ -32,24 +31,30 @@
         type="email" 
         pattern=".+@.+\..+" 
         #emailModel="ngModel" 
-        ngModel 
+        ngModel
+        [(ngModel)]="email"
         name="email" 
         id=""
-      >
-      <div class="errors"  *ngIf="emailModel.dirty && emailModel.invalid">הקש מייל תקין</div>
+        required
+      />
+      <div class="errors"  *ngIf=" emailModel.invalid && !emailModel.getError('required')">הקש מייל תקין</div>
+      <p *ngIf=" emailModel.getError('required')">השדה הוא שדה חובה</p>
     </div>
     <div>
       <label>password: </label>
       <input 
+      required
       type="password" 
       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$" 
       #passwordModel="ngModel" 
-      ngModel 
-      value={{password}} 
+      [(ngModel)]="password"
+      ngModel
       name="password" 
       id=""
-    >
-      <div class="errors" *ngIf="passwordModel.dirty && passwordModel.errors">הקש סיסמה תקינה</div>
+    />
+      <div class="errors" *ngIf=" passwordModel.invalid && !passwordModel.getError('required')">הקש סיסמה תקינה</div>
+      <p *ngIf=" passwordModel.getError('required')">השדה הוא שדה חובה</p>
+
     </div>
     <div>
       <label>address: </label>
@@ -60,17 +65,7 @@
       name="address" 
       id=""
     >
-    </div>
-    <div>
-      <label>agree?  </label>
-      <input
-        type="checkbox"
-        name="agree"
-        ngModel
-        #agreeModel="ngModel"
-        requiredTrue
-      />
-    </div>
+    </div>    
     <div>
       <button class="btn btn-primary" type="reset">ביטול</button>
       <button  class="btn btn-primary" [disabled]="myForm.invalid">OK</button>  

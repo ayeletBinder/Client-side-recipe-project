@@ -9,6 +9,7 @@ import { SearchPipe } from '../../shared/search.pipe';
 import { UsersService } from '../../shared/services/users.service';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { Category } from '../../shared/models/category';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-recipes',
@@ -19,7 +20,7 @@ import { Category } from '../../shared/models/category';
 })
 export class AllRecipesComponent {
 
-
+// יש לי בעיה עם העברה לעמוד הבא כאשר יש לי סינון??????????
 
 
   usersservice=inject(UsersService);
@@ -36,14 +37,29 @@ export class AllRecipesComponent {
   filteredRecipes: Recipe[] = [];
 
 
-  
+  typeRecipe:string|null=''
+  constructor(private route: ActivatedRoute, private server: UsersService, private router: Router){}
 
   ngOnInit(ev:Recipe[]): void{
-    this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
+     this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
       this.recipes=data as any[];
       this.filteredRecipes=this.recipes;
       console.log(data);
     });
+    // if(this.typeRecipe==="public"){
+    // this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
+    //   this.recipes=data as any[];
+    //   this.filteredRecipes=this.recipes;
+    //   console.log(data);
+    // });}
+    // else{
+    //   console.log("private",this.typeRecipe);
+    //   this.recipesService.getAllRecipeByUserId(this.usersservice.user?._id).subscribe((data)=>{
+    //     this.recipes=data as any[];
+    //     this.filteredRecipes=this.recipes;
+    //     console.log(data);
+    //   });
+    // }
     this.categoriesService.GetAllCategories().subscribe((data)=>{
       this.categories=data as any[];
       // this.selectCategories=this.categories;
@@ -69,7 +85,7 @@ export class AllRecipesComponent {
   searchby() {
     // this.TimePreper
     // this.selectCategories
-
+    debugger
     console.log("selectCategories ",this.selectCategories);
     console.log("TimePreper ",this.TimePreper);
 
@@ -115,6 +131,9 @@ export class AllRecipesComponent {
       this.indexPage+=index;
       this.recipesService.getAllRecipe(this.searchName,this.indexPage,12).subscribe((data)=>{
         this.recipes=data as any[];
+        debugger
+        this.filteredRecipes=this.recipes;
+        this.searchby();
         console.log(data);
       })
     }
