@@ -54,15 +54,23 @@ export class UsersService {
   get getAllUsers(){
     return this.http.get(this.userUrl); 
   }
+
   logIn(u:User) {
+    debugger
     return this.http.post<{user:User;token:string}>(`${this.userUrl}/signin`,u);
   }
+
   signUp(u:User) {
     return this.http.post<{user:User;token:string}>(`${this.userUrl}/signup`,u);
   }
 
-  isTokenExpired(){
-     const Expiry=(JSON.parse(atob(String(this.token).split('.')[1])).exp);
-     return Math.floor((new Date()).getTime()/1000)>=Expiry;
+  logOut() {
+    localStorage.removeItem('theUser');
+    localStorage.removeItem('theToken');
   }
+
+  // isTokenExpired(){
+  //    const Expiry=(JSON.parse(atob(String(this.token).split('.')[1])).exp);
+  //    return Math.floor((new Date()).getTime()/1000)>=Expiry;
+  // }
 }

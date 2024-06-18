@@ -28,11 +28,12 @@ export class LoginComponent {
     .subscribe((data)=>{
       console.log(data);
       this.userService.token=data.token;
-      this.userService.user=data.user;      
+      this.userService.user=data.user;   
+      debugger   
     })
     console.log(" hhd "+this.userService.token+" hhd "+
     this.userService.user,this.userService.user?.name,"name");
-    this.router.navigate(['recipes']);
+    this.router.navigate(['publicRecipes']);
 
   }
 

@@ -16,6 +16,7 @@ import { Category } from '../../shared/models/category';
 import { Recipe } from '../../shared/models/recipe';
 import { RecipesService } from '../../shared/services/recipes.service';
 import { UsersService } from '../../shared/services/users.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
@@ -70,13 +71,24 @@ export class RecipeFormComponent implements OnInit {
     images: new FormControl(),
     IsPrivate: new FormControl('', [Validators.required]),
     recipeTags: new FormControl('', [Validators.required]),
-    instruction: new FormControl('', [Validators.required]),
+    instructions: new FormControl('', [Validators.required]),
   });
   // { _id:"1",description:"ttt",recipes:[{_id:'11',name:"String",images:[""] }]}
   categories: Category[] = [];
-  recipe: Recipe = {preparationTime:0};
+  recipe: Recipe = { layers: [{description:'',products:''}] ,preparationTime:0};
   p=[];
+category: any="aaa";
+
   ngOnInit() {
+    const t=this.route.snapshot.paramMap.get('recipe');
+    console.log("uuuu",t);
+    // if(idRecipe){
+    //   this.recipesService.getRecipeById(idRecipe)?.subscribe((data)=>{
+    //     if(data){
+    //       this.recipe=data as any;
+    //       console.log("ppp",this.recipe);
+    //     }
+    // });}
     if(this.categoriesService.categories==undefined){
       this.categoriesService.GetAllCategories().subscribe((data)=>{
         this.categories=data as any[];
@@ -107,7 +119,7 @@ export class RecipeFormComponent implements OnInit {
       })
     );
   }
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private route:ActivatedRoute,private router:Router) {
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl(),
@@ -126,7 +138,7 @@ export class RecipeFormComponent implements OnInit {
       images: new FormControl(),
       IsPrivate: new FormControl('', [Validators.required]),
       recipeTags: new FormControl('', [Validators.required]),
-      instruction: new FormControl('', [Validators.required]),
+      instructions: new FormControl('', [Validators.required]),
     });
 
   }
@@ -137,7 +149,7 @@ export class RecipeFormComponent implements OnInit {
       return; 
     }
     const formValue = this.recipeForm.value; 
-    this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instruction:formValue.instruction , 
+    this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instructions:formValue.instructions , 
               layers:[formValue.layers.map((obj:any) => ({ description:obj.layersDescription ,products:obj.products }))],
               IsPrivate:formValue.IsPrivate?true:false,images:formValue.images,user:{ _id: this.usersService.user?._id,name:this.usersService.user?.name }}
     console.log(this.recipe);

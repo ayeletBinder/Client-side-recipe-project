@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { RecipesService } from '../../shared/services/recipes.service';
 import { RecipeComponent } from '../recipe/recipe.component';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   templateUrl: './all-recipes.component.html',
   styleUrl: './all-recipes.component.scss'
 })
-export class AllRecipesComponent {
+export class AllRecipesComponent implements OnChanges{
 
 // יש לי בעיה עם העברה לעמוד הבא כאשר יש לי סינון??????????
 
@@ -34,47 +34,63 @@ export class AllRecipesComponent {
   selectCategories:any=null;
   categoriesService=inject(CategoriesService);
   categories:Category[]=[];
-  filteredRecipes: Recipe[] = [];
+  filteredRecipes: Recipe[]|undefined;
 
+  @Input()
+  publicRecipes:Recipe[] | undefined;
 
-  typeRecipe:string|null=''
+  @Input()
+  privateRecipes:Recipe[] | undefined;
+
+  typeRecipe:boolean=true
   constructor(private route: ActivatedRoute, private server: UsersService, private router: Router){}
 
-  ngOnInit(ev:Recipe[]): void{
-     this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
-      this.recipes=data as any[];
-      this.filteredRecipes=this.recipes;
-      console.log(data);
-    });
-    // if(this.typeRecipe==="public"){
-    // this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
-    //   this.recipes=data as any[];
-    //   this.filteredRecipes=this.recipes;
-    //   console.log(data);
-    // });}
-    // else{
-    //   console.log("private",this.typeRecipe);
-    //   this.recipesService.getAllRecipeByUserId(this.usersservice.user?._id).subscribe((data)=>{
-    //     this.recipes=data as any[];
-    //     this.filteredRecipes=this.recipes;
-    //     console.log(data);
-    //   });
-    // }
-    this.categoriesService.GetAllCategories().subscribe((data)=>{
-      this.categories=data as any[];
-      // this.selectCategories=this.categories;
-      console.log(data,'data');
-    })
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['publicRecipes']) {
+      console.log('pu changed from', changes['publicRecipes'].previousValue, 'to', changes['publicRecipes'].currentValue);
+      this.filteredRecipes=changes['publicRecipes'].currentValue;
+      console.log(this.filteredRecipes,"pppppp");
+      }
+      if (changes['privateRecipes']) {
+        console.log('pri changed from', changes['privateRecipes'].previousValue, 'to', changes['privateRecipes'].currentValue);
+        this.filteredRecipes=changes['privateRecipes'].currentValue;
+      }
+    }
 
-    /////////////
-    // this.recipies.push(...ev);
-    // console.log(this.recipies,'this.recipies');
-    ////
-    // this.recipesService.getAllRecipeByUserId(this.usersservice.correctUser?._id).subscribe((data)=>{
-    //   this.recipies=data as any[];
-    //   console.log(data);
-    // });
-  }
+  // ngOnInit(ev:Recipe[]): void{
+  //   debugger
+  //   this.filteredRecipes=this.publicRecipes??this.privateRecipes;
+  //   console.log("filteredRecipes",this.filteredRecipes);
+  //   console.log("publicRecipes",this.publicRecipes);
+  //   console.log("privateRecipes",this.privateRecipes);
+    
+  //   //  this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
+  //   //   this.recipes=data as any[];
+  //   //   this.filteredRecipes=this.recipes;
+  //   //   console.log(data);
+  //   // });
+  //   // this.typeRecipe = this.route.snapshot.paramMap.get('typeRecipe');
+  //   // if(this.typeRecipe==="private"){
+  //   //   debugger
+  //   //   this.recipesService.getAllRecipeByUserId(this.usersservice.user?._id).subscribe((data)=>{
+  //   //     this.recipes=data as any[];
+  //   //     this.filteredRecipes=this.recipes;
+  //   //     console.log(data,"private - recipes");
+  //   // });}
+  //   // else{
+  //   //   debugger
+  //   //   this.recipesService.getAllRecipe('',this.indexPage,12).subscribe((data)=>{
+  //   //     this.recipes=data as any[];
+  //   //     this.filteredRecipes=this.recipes;
+  //   //     console.log(data);
+  //   //   });
+  //   // }
+  //   this.categoriesService.GetAllCategories().subscribe((data)=>{
+  //     this.categories=data as any[];
+  //     // this.selectCategories=this.categories;
+  //     console.log(data,'data');
+  //   })
+  // }
 
   unsearch() {
     this.filteredRecipes=this.recipes;

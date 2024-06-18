@@ -21,13 +21,13 @@ export class RecipeDetailsComponent implements OnInit {
   recipeService = inject(RecipesService);
   recipe: Recipe = {};
   products: string[][]=[];
-  instruction: string[]=[];
+  instructions: string[]=[];
   ngOnInit() {
     const idRecipe = this.route.snapshot.paramMap.get('id');
     console.log(idRecipe);
     this.recipeService.getRecipeById(idRecipe)?.subscribe((data) => {
       this.recipe = data as any;
-      this.theInstruction();
+      this.theInstructions();
       this.theProducts();
       console.log("eee",this.recipe);
     });
@@ -40,15 +40,15 @@ export class RecipeDetailsComponent implements OnInit {
     });
     console.log("oo",this.products);
   }
-  theInstruction(){
-    if(this.recipe.instruction!=undefined){
+  theInstructions(){
+    if(this.recipe.instructions!=undefined){
       debugger
-      this.instruction=this.recipe.instruction?.split("."); 
-      this.instruction.splice(this.instruction.length-1,1); 
-      console.log('u',this.instruction);
+      this.instructions=this.recipe.instructions?.split("."); 
+      this.instructions.splice(this.instructions.length-1,1); 
+      console.log('u',this.instructions);
     }
     else{
-      console.log("oooooooooooooooo",this.recipe.instruction);
+      console.log("oooooooooooooooo",this.recipe.instructions);
       
     }
 

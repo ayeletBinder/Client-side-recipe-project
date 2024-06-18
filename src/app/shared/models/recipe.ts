@@ -7,7 +7,7 @@ export interface Recipe{
         DifficultyLevel?:number,
         Addeddate?:Date,
         layers?:[{description?:string,products?:string}],//?
-        instruction?:string,
+        instructions?:string,
         images?:string,
         IsPrivate?:Boolean,
         user?:userInRecipe//?

@@ -7,11 +7,12 @@ import { UsersService } from './shared/services/users.service';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { AllPublicRecipesComponent } from './components/all-public-recipes/all-public-recipes.component';
+import { PrivateRecipesComponent } from './components/private-recipes/private-recipes.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterModule,LoginComponent,RegisterComponent,CategoriesComponent,RecipeFormComponent,CommonModule,AllPublicRecipesComponent],
+  imports: [RouterOutlet,RouterModule,LoginComponent,RegisterComponent,CategoriesComponent,RecipeFormComponent,CommonModule,AllPublicRecipesComponent,PrivateRecipesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -21,7 +22,6 @@ export class AppComponent {
   moreFilter=true;
   
   logOut() {
-    this.userService.user=null;
-    this.userService.token='';  
+    this.userService.logOut();
   }
 }

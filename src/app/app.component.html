@@ -1,26 +1,23 @@
-<!-- <app-login></app-login>
-<app-register></app-register> -->
+
 <nav class="navbar">
     <div class="navbar-container">
         <div class="navbar-brand">
     <!-- <button *ngIf="!userService.isTokenExpired()" routerLink="logOut" (click)="logOut()">logout</button> -->
 </div>
-    <!-- <a routerLink=""> 
-         <img src="../../../../public/search.png" alt="">
-    </a> -->
-    <!-- <img src="../../../../public/search.png" alt=""> -->
 
     <div class="circle" ><p>{{userService.user?.name?.slice(0,1) ?? "אורח"}}</p></div>
 
     <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="!userService.isTokenExpired()  && userService.user"><a class="nav-link" (click)="logOut()">logOut</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="logIn">logIn</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="signUp">signUp</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="recipes">recipes</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="publicRecipes">all-public-recipes</a></li>
+        <!-- !userService.isTokenExpired()  && -->
+        <li class="nav-item" *ngIf=" userService.user"><a class="nav-link" (click)="logOut()">התנתקות</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="logIn">התחברות</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="signUp">הרשמה</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="publicRecipes">כל המתכונים</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="privateRecipes"> המתכונים שלי</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" routerLink="">all-public-recipes</a></li> -->
         <!-- <li class="nav-item"><a class="nav-link" routerLink="categories">categories</a></li> -->
-        <li class="nav-item" *ngIf="userService.user"><a class="nav-link" routerLink="addRecipe">addRecipe</a></li>
-        <li class="nav-item" *ngIf="userService.correctUser?.role=='admin'"><a class="nav-link" routerLink="AllUsers">AllUsers</a></li>
+        <li class="nav-item" *ngIf="userService.user"><a class="nav-link" routerLink="addRecipe">הוספת מתכון</a></li>
+        <li class="nav-item" *ngIf="userService.correctUser?.role=='admin'"><a class="nav-link" routerLink="AllUsers">כל המשתמשים</a></li>
     </ul>
 </div>
 </nav>
