@@ -1,11 +1,12 @@
 
-<nav class="navbar">
+<nav class="navbar" >
     <div class="navbar-container">
         <div class="navbar-brand">
     <!-- <button *ngIf="!userService.isTokenExpired()" routerLink="logOut" (click)="logOut()">logout</button> -->
 </div>
-
-    <div class="circle" ><p>{{userService.user?.name?.slice(0,1) ?? "אורח"}}</p></div>
+<!-- <img src="logo.png" alt="" width="60px" height="80px"> -->
+    <div class="circle" *ngIf="userService.user" [title]="userService.user?.name"><p>{{userService.user?.name?.slice(0,1) }}</p></div>
+    <div class="circle" *ngIf="!userService.user" style="font-size: 10px;" ><h4>אורח</h4></div>
 
     <ul class="navbar-nav">
         <!-- !userService.isTokenExpired()  && -->
@@ -20,6 +21,7 @@
     </ul>
 </div>
 </nav>
+
 <router-outlet></router-outlet>
 
 

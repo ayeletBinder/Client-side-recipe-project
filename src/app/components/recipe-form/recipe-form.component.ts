@@ -31,6 +31,10 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrl: './recipe-form.component.scss',
 })
 export class RecipeFormComponent implements OnInit {
+  categoriesService = inject(CategoriesService);
+  recipesService = inject(RecipesService);
+  usersService = inject(UsersService);
+  previewUrl:string='';
 // add() {
 //   debugger
 //   this.recipesService.addRecipe({
@@ -48,9 +52,8 @@ export class RecipeFormComponent implements OnInit {
 //   }).subscribe(response => {});
 
 // }
-  categoriesService = inject(CategoriesService);
-  recipesService = inject(RecipesService);
-  usersService = inject(UsersService);
+
+
   recipeForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl(),
@@ -70,7 +73,7 @@ export class RecipeFormComponent implements OnInit {
     ingredients: new FormControl('', [Validators.required]),
     images: new FormControl(),
     IsPrivate: new FormControl('', [Validators.required]),
-    recipeTags: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
     instructions: new FormControl('', [Validators.required]),
   });
   // { _id:"1",description:"ttt",recipes:[{_id:'11',name:"String",images:[""] }]}
@@ -78,9 +81,13 @@ export class RecipeFormComponent implements OnInit {
   recipe: Recipe = { layers: [{description:'',products:''}] ,preparationTime:0};
   p=[];
 category: any="aaa";
+idUpdate: string|null=null;
+
+successfull: boolean=false;
   ngOnInit() {
-    const idRecipe = this.route.snapshot.paramMap.get('id');
+    const idRecipe = this.route.snapshot.paramMap.get('id')?.toString();
     if(idRecipe){
+      this.idUpdate=idRecipe;
       this.recipesService.getRecipeById(idRecipe)?.subscribe((data)=>{
         if(data){
           this.recipe=data as any;
@@ -135,27 +142,60 @@ category: any="aaa";
       ]),
       images: new FormControl(),
       IsPrivate: new FormControl('', [Validators.required]),
-      recipeTags: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
       instructions: new FormControl('', [Validators.required]),
     });
 
   }
   onSubmit() {
     debugger
+    // if (this.recipeForm.invalid) {
+    //   return; 
+    // }
+    // const formValue = this.recipeForm.value;
+    // this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instructions:formValue.instructions, 
+    //           layers:[formValue.layers.map((obj:any) => ({ description:obj.layersDescription ,products:obj.products }))],
+    //           IsPrivate:formValue.IsPrivate?true:false,images:formValue.images,user:{ _id: this.usersService.user?._id,name:this.usersService.user?.name }}
+    // console.log(this.recipe);
+    // this.recipesService.addRecipe(this.recipe).subscribe(response => {
+    //   console.log('POST request successful:', response);
+    // }, error => {
+    //   console.error('Error in POST request:', error);
+    // });
 
-    if (this.recipeForm.invalid) {
-      return; 
+    if (this.recipeForm.invalid ) {
+      return;
     }
-    const formValue = this.recipeForm.value; 
-    this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instructions:formValue.instructions , 
-              layers:[formValue.layers.map((obj:any) => ({ description:obj.layersDescription ,products:obj.products }))],
-              IsPrivate:formValue.IsPrivate?true:false,images:formValue.images,user:{ _id: this.usersService.user?._id,name:this.usersService.user?.name }}
-    console.log(this.recipe);
-    this.recipesService.addRecipe(this.recipe).subscribe(response => {
-      console.log('POST request successful:', response);
-    }, error => {
-      console.error('Error in POST request:', error);
-    });
+    const formData = new FormData();
+    formData.append('caption', this.recipeForm.value);
+    if(!this.idUpdate){
+    this.recipesService.addRecipe(this.recipeForm.value)
+      .subscribe(response => {
+        console.log('Image uploaded successfully!', response);
+        this.successfull=true;
+      }, error => {
+        console.error('Error uploading image:', error);
+      });
+    }
+    else{
+      this.recipesService.updateRecipe(this.idUpdate,this.recipeForm.value)
+      .subscribe(Response => {
+        console.log('Image update successfully!', Response);
+        this.successfull=true;
+      }, error => {
+        console.error('Error uploading image:', error);
+      });
+    }
+  }
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
+    if (typeof selectedFile === 'object' && selectedFile instanceof Blob){
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.previewUrl = reader.result as string;
+      };
+      reader.readAsDataURL(selectedFile);
+    }
   }
 }
 

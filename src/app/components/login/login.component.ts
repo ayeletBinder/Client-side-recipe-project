@@ -34,7 +34,6 @@ export class LoginComponent {
     console.log(" hhd "+this.userService.token+" hhd "+
     this.userService.user,this.userService.user?.name,"name");
     this.router.navigate(['publicRecipes']);
-
   }
 
 

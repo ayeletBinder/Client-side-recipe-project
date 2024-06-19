@@ -56,5 +56,8 @@ export class RecipeDetailsComponent implements OnInit {
   getArray(): number[] {
     return new Array(this.recipe.DifficultyLevel);
   }
-
+  getOpositeArray(): number[] {
+    return new Array(5-(this.recipe.DifficultyLevel??0));
+  }
+  
 }

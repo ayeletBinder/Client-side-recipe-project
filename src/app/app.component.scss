@@ -1,16 +1,18 @@
 /* input-field.component.scss */
 body{
-    background-color: #fff;
+  background-color: #f4f4f4;
+  font-style: oblique;
+
 }
 /* navbar.component.scss */
-$primary-color: #e4abdc;
+$primary-color: #f4f4f4;
 $secondary-color: #2c3e50;
 $white-color: #ffffff;
 
 .navbar {
   background-color: $primary-color;
   padding: 1rem;
-  
+  height: 45px;
   .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -18,7 +20,7 @@ $white-color: #ffffff;
 
     .navbar-brand {
       a {
-        color: $white-color;
+        color: black;
         text-decoration: none;
         font-size: 1.5rem;
         font-weight: bold;
@@ -39,14 +41,15 @@ $white-color: #ffffff;
         margin-left: 1rem;
 
         .nav-link {
-          color: $white-color;
+          color: black;
           text-decoration: none;
           font-size: 1rem;
           padding: 0.5rem 1rem;
           border-radius: 4px;
 
           &:hover {
-            background-color: lighten($primary-color, 10%);
+            // background-color: lighten($primary-color, 10%);
+            border-bottom: black,2px;
           }
         }
       }
@@ -57,13 +60,45 @@ $white-color: #ffffff;
   width: 40px; /* Adjust width as needed */
   height: 40px; /* Adjust height as needed */
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #0d0d0d;
   margin-left: 2vw;
   position: absolute; 
 p{
   margin: 12px;
   margin-top: 3px;
   font-size: 27px;
+  color: #f1f1f1;
+}
+h4{
+  margin: 12px;
+  margin-top: 15px;
+  font-size: 12px;
+    color: #f1f1f1;
 }
 }
 
+.navbar a {
+  color: rgb(11, 8, 8);
+  text-decoration: none;
+  position: relative;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

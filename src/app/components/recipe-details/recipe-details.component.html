@@ -1,64 +1,109 @@
-<div class="grid-container-rows">
-  <div></div>
-  <div class="grid-item">
-    <div class="grid-container-columns">
-      <!-- DifficultyLevel -->
-      <!-- <p>{{recipe.DifficultyLevel | starsDifficultyLevel  }}</p> -->
+<!-- <div class="grid-container-rows">
+  <div class="grid-item">-->
 
-      <span class="up-item" *ngFor="let _ of getArray(); let i = index">
-        <img src="../../../asset/images/2.JPG" alt="" />
-        *
-      </span>
-      <!-- name -->
-      <p class="up-item">{{ recipe.name }}</p>
-    </div>
-    <!-- <ng-template *ngFor="let item of numbers"><span>{{item}}</span></ng-template> -->
-    <!-- description -->
-    <p>{{ recipe.description }}</p>
-    <!-- images -->
-    <img src="../../shared/1.jpg" alt="tt" />
-  </div>
-  <div class="grid-item grid-container-columns">
-    <div class="">
-      <p>:אופן ההכנה</p>
-      @for (i of instructions; track $index) {
-      <p>{{ i }} .{{ $index }}</p>
-      }
-    </div>
-    <div class="">
-      <!-- preparationTime -->
-      <span>זמן הכנה: </span>
-      <span>{{ recipe.preparationTime | timeFormat }} </span>
-      <p>
-        <!-- category -->
-        @for (category of recipe.category; track $index) {
-        <span>{{ category }}</span>
-        <!-- *ngIf="let _ of getArr() !== $index" -->
-        <span >, </span>
-        <span> :קטגוריה </span>
 
+    <div   class="grid-container-rows">
+      <div  class="grid-container-rows">
+      <div class="grid-container-columns"> 
+        <span>
+          <img
+            *ngFor="let _ of getArray(); let i = index"
+            src="star (1).png"
+            alt=""
+            height="20px"
+            width="20px"
+          />
+          <img
+            *ngFor="let _ of getOpositeArray(); let i = index"
+            src="star.png"
+            alt=""
+            height="20px"
+            width="20px"
+          />
+        </span>
+        <span
+          style="
+            text-align: right;
+            margin-right: 6vw;
+            font-style: oblique;
+            font-size: 35px;
+            font-weight: bold;
+          "
+        >
+          {{ recipe.name }}
+        </span>
+      </div>
+      <span
+      style="
+        text-align: right;
+        margin-right: 3vw;
+        font-style: oblique;
+        font-size: larger;
+        font-weight: bold;
+      "
+    >
+      {{ recipe.description }}
+      </span> 
+     </div>
+     <img
+     src="2.JPG"
+     alt="tt"
+     style="object-fit: cover; width: 100%; height: 34vh"
+    /></div>
+
+    <div class="grid-item grid-container-columns">
+      <div class="instructions">
+        <p>:אופן ההכנה</p>
+        @for (i of instructions; track $index) {
+        <p>{{ i }} .{{ $index }}</p>
         }
-      </p>
-      <p class="products-div">:רכיבים</p>
-      <i data-lucide="cooking-pot"></i>
-      @for (l of this.recipe.layers; track $index) {
-      <!-- <lucide-icon name="cooking-pot"></lucide-icon> -->
-      <i data-lucide="cooking-pot"></i>
-      <h4>{{ l.description }}</h4>
-      @for (pr of products[$index]; track $index) {
-      <p>{{ pr }} -</p>
-      } }
-    </div>
-  </div>
-</div>
+      </div>
+      <div style="    text-align: right;
+      margin-right: 8vw;
+      margin-top: 2vh;" class="products-div">
+        <span>זמן הכנה: </span>
+        <span>{{ recipe.preparationTime | timeFormat }} </span>
+        <p>
+          @for (category of recipe.category; track $index) {
+          <span>{{ category }}</span>
+          <span>, </span>
 
-<!-- <button (click)="j()">products</button>
+          }
+          <span> :קטגוריה </span>
+        </p>
+        <p >:רכיבים</p>
+        <i data-lucide="cooking-pot"></i>
+        @for (l of this.recipe.layers; track $index) {
+        <i data-lucide="cooking-pot"></i>
+        <h4>{{ l.description }}</h4>
+        @for (pr of products[$index]; track $index) {
+        <p>{{ pr }}  <img src="mix.png" alt="tt" style="object-fit: contain; width:10px; height: 10px" /> </p>
+        } }
+      </div>
+    </div>
+  <!-- </div> -->
+
+  <!-- <button (click)="j()">products</button>
 <button (click)="p()">products</button> -->
 
-<!-- 
+  <!-- 
 
 Addeddate
 
 IsPrivate
 
  -->
+<!-- </div> -->
+
+
+<!-- 
+<div style="background-color: chartreuse;" class="grid-container-rows">
+  <div style="background-color: blueviolet;" class="grid-container-rows">
+  <div class="grid-container-columns"> 
+    <span style="background-color: rgb(0, 34, 255);">***</span>
+    <p style="background-color: rgb(145, 56, 56);">שם</p>
+  </div>
+  <span style="background-color: rgb(231, 178, 233); ">תאור</span>
+  </div>
+  <img style="background-color: rgb(223, 194, 81);" src="תמונה" alt=",,,,">
+</div> -->

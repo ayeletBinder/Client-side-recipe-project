@@ -39,12 +39,19 @@ export class RecipesService {
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
-    return this.http.post(this.recipesURL, r, { headers });
+    r.user={_id:this.usersService.user?._id,name:this.usersService.user?.name}
+    return this.http.post(this.recipesURL, r,    { headers }    );
   }
 
   updateRecipe(id: string, r: Recipe) {
-    // this.recipes.find({_id:id});
-    this.http.patch(`${this.recipesURL}/${id}`, r);
+    debugger
+    const token = this.usersService.token;
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    r.user={_id:this.usersService.user?._id,name:this.usersService.user?.name};
+    return this.http.patch(`${this.recipesURL}/${id}`, r, { headers } );
   }
   deleteRecipe(id: string) {
     // this.recipes.findByIdAndDelete(id);

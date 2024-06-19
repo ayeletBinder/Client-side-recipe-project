@@ -47,10 +47,7 @@ export class RegisterComponent implements OnInit {
     },(err)=>{
         this.isExist=true;
     })
-    //not secseed
 
-      //לאן לשלוח אותו???
-    // console.log(myform);
   }
   
 

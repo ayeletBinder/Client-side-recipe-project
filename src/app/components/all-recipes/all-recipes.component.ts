@@ -37,12 +37,6 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
   styleUrl: './all-recipes.component.scss',
 })
 export class AllRecipesComponent implements OnChanges {
-//       ev.selectCategory +
-//       '00000' +
-//       ev.time +
-//       'vvvvvvvvvvv'
-//   );
-// }
 
 
   // יש לי בעיה עם העברה לעמוד הבא כאשר יש לי סינון??????????
@@ -60,6 +54,7 @@ export class AllRecipesComponent implements OnChanges {
   isFilter: boolean = false;
   typeRecipe: boolean = true;
   searchByName: any;
+  p:number=0;
 
   @Input()
   publicRecipes: Recipe[] | undefined;
@@ -89,6 +84,7 @@ export class AllRecipesComponent implements OnChanges {
   }
 
   unsearch() {
+    this.indexPage=1
     this.filteredRecipes = this.recipes;
     this.TimePreper = Math.min();
     this.selectCategories = null;
@@ -114,54 +110,46 @@ export class AllRecipesComponent implements OnChanges {
 
   searchByCaegory(arg0: any) {
     this.selectCategories = arg0.value;
+    this.indexPage=1;
   }
 
   movePage(index: number) {
     if (!this.isFilter) {
-      console.log('indexPage', this.indexPage, 'index', index);
-      if (index === 1 || this.indexPage !== 1) {
-        this.indexPage += index;
+      console.log("p",this.p);
+      if (index === 1 || this.p!== 0) {
         this.recipesService
-          .getAllRecipe(this.searchName, this.indexPage, 12)
+          .getAllRecipe(this.searchName, 1+index+this.p, 12)
           .subscribe((data) => {
-            this.recipes = data as any[];
-            debugger;
-            this.filteredRecipes = this.recipes;
-            console.log(data);
+            this.filteredRecipes = data as any[];
           });
+        this.indexPage = 1;
+        this.p+=index;
       }
     } 
-  //   else {
-  //     if (index === 1) {
-  //       this.filteredRecipes = this.recipes.slice(
-  //         (this.indexPage - 1) * 12 + 1,
-  //         this.indexPage * 12
-  //       );
-  //       if (!this.filteredRecipes[0]) {
-  //         //לא לתת להתקדם לעמוד הבא...
-  //       }
-  //       this.indexPage++;
-  //     } else {
-  //       this.filteredRecipes = this.recipes.slice(
-  //         (this.indexPage - 1) * 12 - 12,
-  //         (this.indexPage - 1) * 12
-  //       );
-  //       if (!this.filteredRecipes[0]) {
-  //         //לא לתת להתקדם לעמוד הבא...
-  //       }
-  //       this.indexPage--;
-  //     }
-  //   }
+    else {
+       // this.filteredRecipes = this.recipes.slice(
+        //   (this.indexPage - 1) * 12 + 1,
+        //   this.indexPage * 12
+        // );
+        // if (!this.filteredRecipes[0]) {
+        if (false) {
+          //לא לתת להתקדם לעמוד הבא...
+        }
+        else{
+          this.indexPage+=index;
+        }
+    }
   }
 
   search(search: string) {
     debugger
     this.searchName = search;
-    this.recipesService.getAllRecipe(search, 1, Math.min()).subscribe((data) => {
+    this.recipesService.getAllRecipe(search,1, Math.min()).subscribe((data) => {
       this.recipes = data as any[];
       this.filteredRecipes = this.recipes;
+      this.indexPage=1;
       console.log(this.filteredRecipes,"filteredRecipes111111111111");
     });
-  }
+   }
 
 }

@@ -1,3 +1,40 @@
-<p>home works!</p>
-<img style="width: 100%; height: 100%;" src="2.JPG" alt="">
+<!-- 
+<header>
+אתר המתכונים שלי</header> -->
 
+<div class="container">
+    <div class="section" id="popular-recipes">
+        <h2>:המתכונים הכי חדשים</h2>
+        <div class="recipes">
+            <!-- Example recipes, replace with dynamic content as needed -->
+            <div class="recipe" *ngFor="let item of filterListTime; let i = index">
+                <!-- <img [src]="item.images" alt=`Recipe ${$i}` > -->
+                <a (click)="navToNewRecipe(i)">Recipe {{i}}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="latest-recipes">
+        <h2>:המתכונים הכי מהירים</h2>
+            <!-- Example recipes, replace with dynamic content as needed -->
+            <div class="recipes">
+                <!-- Example recipes, replace with dynamic content as needed -->
+                <div class="recipe" *ngFor="let item of filterListTime; let i = index">
+                    <!-- <img [src]="item.images" alt=`Recipe ${$i}` > -->
+                    <a (click)="navToTimeRecipe(i)">Recipe {{i}}</a>
+                </div>
+            </div>
+    <div class="section">
+        <h2>:המתכונים הכי מגרים</h2>
+        <div class="slideshow-container">
+            <div class="slide" *ngFor="let slide of slideshowImages; let i = index" [ngClass]="{'active': i === currentIndex}">
+                <img  [src]="slide.imageUrl" alt="Slideshow {{ i + 1 }}">
+            </div>
+        </div>
+        <div class="dot-container">
+            <span class="dot" *ngFor="let slide of slideshowImages; let i = index" [ngClass]="{'active-dot': i === currentIndex}" (click)="currentSlide(i)"></span>
+        </div>
+    </div>
+</div>
+</div>
+<app-footer></app-footer>
