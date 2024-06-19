@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       console.log(data);
       this.userService.token=data.token;
       this.userService.user=data.user;            
-      this.router.navigate(['recipes']);
+      this.router.navigate(['publicRecipes']);
     },(err)=>{
         this.isExist=true;
     })

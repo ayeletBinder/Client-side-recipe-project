@@ -13,8 +13,7 @@
         <li class="nav-item"><a class="nav-link" routerLink="logIn">התחברות</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="signUp">הרשמה</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="publicRecipes">כל המתכונים</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="privateRecipes"> המתכונים שלי</a></li>
-        <!-- <li class="nav-item"><a class="nav-link" routerLink="">all-public-recipes</a></li> -->
+        <li class="nav-item" *ngIf=" userService.user"><a class="nav-link" routerLink="privateRecipes"> המתכונים שלי</a></li>
         <!-- <li class="nav-item"><a class="nav-link" routerLink="categories">categories</a></li> -->
         <li class="nav-item" *ngIf="userService.user"><a class="nav-link" routerLink="addRecipe">הוספת מתכון</a></li>
         <li class="nav-item" *ngIf="userService.correctUser?.role=='admin'"><a class="nav-link" routerLink="AllUsers">כל המשתמשים</a></li>

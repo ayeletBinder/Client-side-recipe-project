@@ -78,17 +78,15 @@ export class RecipeFormComponent implements OnInit {
   recipe: Recipe = { layers: [{description:'',products:''}] ,preparationTime:0};
   p=[];
 category: any="aaa";
-
   ngOnInit() {
-    const t=this.route.snapshot.paramMap.get('recipe');
-    console.log("uuuu",t);
-    // if(idRecipe){
-    //   this.recipesService.getRecipeById(idRecipe)?.subscribe((data)=>{
-    //     if(data){
-    //       this.recipe=data as any;
-    //       console.log("ppp",this.recipe);
-    //     }
-    // });}
+    const idRecipe = this.route.snapshot.paramMap.get('id');
+    if(idRecipe){
+      this.recipesService.getRecipeById(idRecipe)?.subscribe((data)=>{
+        if(data){
+          this.recipe=data as any;
+          console.log("ppp",this.recipe);
+        }
+    });}
     if(this.categoriesService.categories==undefined){
       this.categoriesService.GetAllCategories().subscribe((data)=>{
         this.categories=data as any[];

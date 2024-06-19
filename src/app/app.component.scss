@@ -57,7 +57,9 @@ $white-color: #ffffff;
   width: 40px; /* Adjust width as needed */
   height: 40px; /* Adjust height as needed */
   border-radius: 50%;
-  background-color: #ccc; /* Adjust background color as desired */
+  background-color: #ccc;
+  margin-left: 2vw;
+  position: absolute; 
 p{
   margin: 12px;
   margin-top: 3px;

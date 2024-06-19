@@ -1,20 +1,21 @@
 <div class="recipe-page">
-<div class="search-box">
-  <input type="text"  placeholder=" חפש לפי שם מתכון..." (input)="search(searchByName)" [(ngModel)]="searchByName"/>
-  <input type="number"  placeholder="זמן מקסימאלי"  [(ngModel)]="TimePreper"/>
-  <select style="width: 80px;"  placeholder=" קטגוריה" (change)="searchByCaegory($event.target)" [(ngModel)]="selectCategories">
+<div class="search-box" *ngIf="publicRecipes && isFilter ">
+  <input class="input-serch" type="text"  placeholder=" חפש לפי שם מתכון..." (input)="search(searchName)" [(ngModel)]="searchName"/>
+  <input class="input-serch" type="number"  placeholder="זמן מקסימאלי"  [(ngModel)]="TimePreper"/>
+  <select class="input-serch" style="width: 80px;"  placeholder=" קטגוריה" (change)="searchByCaegory($event.target)" [(ngModel)]="selectCategories">
     <option *ngFor="let category of categories" [value]="category.description">{{category.description}}</option>
   </select>
-<button (click)="searchby()">סנן</button>
-<button (click)="unsearch()">הסר סינון</button>
+<button (click)="unsearch()" *ngIf="isFilter">הסר סינון</button>
 
 </div>
+<button (click)="searchby()" *ngIf="!isFilter && publicRecipes">סנן</button>
+
 
 <div class="recipes">
-  @for (r of filteredRecipes  ; track r._id) {
+  @for (r of filteredRecipes | filterRecipes:TimePreper:selectCategories ; track r._id) {
   <app-recipe class="cardRecipe" [recipe]="r" [typeRecipe]="publicRecipes?true:false"></app-recipe>
   }
 </div>
-<button *ngIf="publicRecipes" class="rounded-button" (click)="movePage(-1)"><</button>
-<button *ngIf="publicRecipes" class="rounded-button" (click)="movePage(1)">></button>
+<button *ngIf="publicRecipes && !isFilter" class="rounded-button" (click)="movePage(-1)"><</button>
+<button *ngIf="publicRecipes && !isFilter" class="rounded-button" (click)="movePage(1)">></button>
 </div>
