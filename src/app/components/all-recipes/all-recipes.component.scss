@@ -2,7 +2,12 @@ $secondary-color: #2c3e50;
 $text-color: #333333;
 $background-color: #f4f4f4;
 $white-color: #ffffff;
-
+.search-box{
+  background-color: #f4f4f4;
+}
+body{
+  background-color: #f4f4f4;
+}
 
 .recipe-page{
   background-color: $background-color;
@@ -31,36 +36,36 @@ $white-color: #ffffff;
 }
 /* search-box.component.scss */
 
-.search-box {
-display: grid;
-grid-column: auto;
+// .search-box {
+// display: grid;
+// grid-column: auto;
 
-  // flex: 1; /* Allow input to expand */
-  padding: 5px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  width:30vw;
-}
+//   // flex: 1; /* Allow input to expand */
+//   padding: 5px;
+//   border: none;
+//   outline: none;
+//   font-size: 16px;
+//   width:30vw;
+// }
 
-.search-box button {
-  background-color: pink; /* Green */
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 50%; /* Round button */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 50% ;
-}
+// .search-box button {
+//   background-color: pink; /* Green */
+//   color: white;
+//   border: none;
+//   padding: 5px 10px;
+//   border-radius: 50%; /* Round button */
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+//   width: 50% ;
+// }
 
-.search-box button:hover {
-  background-color: pink; /* Darker green on hover */
-}
+// .search-box button:hover {
+//   background-color: pink; /* Darker green on hover */
+// }
 
-.search-box i.fas.fa-search {
-  font-size: 16px;
-}
+// .search-box i.fas.fa-search {
+//   font-size: 16px;
+// }
 .rounded-button {
   background-color: pink; 
   color: white;
@@ -81,4 +86,32 @@ grid-column: auto;
   border-radius: 50px; 
   width: 20vw;
   height: 6vh;
+}
+/////////// 
+.search-box {
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.search-card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.search{
+  margin-left: 45vw;
 }

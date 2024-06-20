@@ -34,7 +34,7 @@ export class RecipeFormComponent implements OnInit {
   categoriesService = inject(CategoriesService);
   recipesService = inject(RecipesService);
   usersService = inject(UsersService);
-  previewUrl:string='';
+  previewUrl: string = '';
 // add() {
 //   debugger
 //   this.recipesService.addRecipe({
@@ -91,6 +91,7 @@ successfull: boolean=false;
       this.recipesService.getRecipeById(idRecipe)?.subscribe((data)=>{
         if(data){
           this.recipe=data as any;
+          this.previewUrl =this.recipe && this.recipe.images ? this.recipe.images : '';
           console.log("ppp",this.recipe);
         }
     });}

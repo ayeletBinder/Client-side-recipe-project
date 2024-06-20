@@ -1,7 +1,7 @@
 /* input-field.component.scss */
 body{
-  background-color: #f4f4f4;
-  font-style: oblique;
+    background-color: #fff;
+    font-style: oblique;
 
 }
 /* navbar.component.scss */
@@ -101,4 +101,8 @@ h4{
 .navbar a:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.navbar a.no-underline::after {
+  content: none;
 }

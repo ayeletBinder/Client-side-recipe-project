@@ -9,7 +9,7 @@
             <!-- Example recipes, replace with dynamic content as needed -->
             <div class="recipe" *ngFor="let item of filterListTime; let i = index">
                 <!-- <img [src]="item.images" alt=`Recipe ${$i}` > -->
-                <a (click)="navToNewRecipe(i)">Recipe {{i}}</a>
+                <a (click)="navToNewRecipe(i)">{{item.name}}</a>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
                 <!-- Example recipes, replace with dynamic content as needed -->
                 <div class="recipe" *ngFor="let item of filterListTime; let i = index">
                     <!-- <img [src]="item.images" alt=`Recipe ${$i}` > -->
-                    <a (click)="navToTimeRecipe(i)">Recipe {{i}}</a>
+                    <a (click)="navToTimeRecipe(i)">{{item.name}}</a>
                 </div>
             </div>
     <div class="section">

@@ -4,9 +4,9 @@
         <div class="navbar-brand">
     <!-- <button *ngIf="!userService.isTokenExpired()" routerLink="logOut" (click)="logOut()">logout</button> -->
 </div>
-<!-- <img src="logo.png" alt="" width="60px" height="80px"> -->
     <div class="circle" *ngIf="userService.user" [title]="userService.user?.name"><p>{{userService.user?.name?.slice(0,1) }}</p></div>
     <div class="circle" *ngIf="!userService.user" style="font-size: 10px;" ><h4>אורח</h4></div>
+    <a  routerLink="" class="no-underline"><img src="צילום_מסך_2024-06-19_204906-removebg-preview.png" alt="" width="190px" ></a>
 
     <ul class="navbar-nav">
         <!-- !userService.isTokenExpired()  && -->

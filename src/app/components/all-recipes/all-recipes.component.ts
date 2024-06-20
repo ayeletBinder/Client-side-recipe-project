@@ -17,14 +17,28 @@ import { CategoriesService } from '../../shared/services/categories.service';
 import { Category } from '../../shared/models/category';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FilterRecipesPipe } from '../../shared/pipes/filter-recipes.pipe';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-
+import { MatFormField, MatFormFieldControl, MatLabel } from '@angular/material/form-field';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-all-recipes',
   standalone: true,
   imports: [
-    MatFormField,
-    MatLabel,
+    
+    // MatFormFieldModule, MatSelectModule,
+    // MatSelect,
+    // MatOption,
+    // MatInputModule,
+    // MatButtonModule,
+    // MatCardModule,
+    // MatIconModule,
+    // MatFormField,
+    // MatLabel,
     SearchPipe,
     FilterREcipesComponent,
     RecipeComponent,
@@ -32,12 +46,12 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
     NgIf,
     CommonModule,
     FilterRecipesPipe,
+
   ],
   templateUrl: './all-recipes.component.html',
   styleUrl: './all-recipes.component.scss',
 })
 export class AllRecipesComponent implements OnChanges {
-
 
   // יש לי בעיה עם העברה לעמוד הבא כאשר יש לי סינון??????????
   categoriesService = inject(CategoriesService);

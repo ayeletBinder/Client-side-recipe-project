@@ -1,5 +1,41 @@
+
+
+
+<div class="search-box" *ngIf="publicRecipes && isFilter">
+  <div class="search-card">
+    <header>
+      <title>סינון מתכונים</title>
+    </header>
+    <div>
+      <div class="full-width">
+        <!-- <mat-label>חפש לפי שם מתכון</mat-label> -->
+        <input matInput type="text" placeholder=" חפש לפי שם מתכון..." (input)="search(searchName)" [(ngModel)]="searchName"/>
+      </div>
+
+      <div class="full-width">
+        <!-- <mat-label>זמן מקסימאלי</mat-label> -->
+        <input matInput type="number" placeholder="זמן מקסימאלי" (change)="this.indexPage=1;" [(ngModel)]="TimePreper"/>
+      </div>
+
+      <div class="full-width">
+        <!-- <mat-label>קטגוריה</mat-label> -->
+        <select placeholder="קטגוריה" (change)="searchByCaegory($event.target)" [(ngModel)]="selectCategories">
+          <option *ngFor="let category of categories" [value]="category.description">{{category.description}}</option>
+        </select>
+      </div>
+
+      
+      <div class="filter-buttons">
+        <button mat-raised-button color="primary" (click)="unsearch()" *ngIf="isFilter">הסר סינון</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="search" mat-raised-button color="accent" (click)="searchby()" *ngIf="!isFilter && publicRecipes">סנן</button>
+
 <div class="recipe-page">
-<div class="search-box" *ngIf="publicRecipes && isFilter ">
+<!-- <div class="search-box" *ngIf="publicRecipes && isFilter ">
   <input class="input-serch" type="text"  placeholder=" חפש לפי שם מתכון..."  (input)="search(searchName)" [(ngModel)]="searchName"/>
   <input class="input-serch" type="number"  placeholder="זמן מקסימאלי" (change)="this.indexPage=1;" [(ngModel)]="TimePreper"/>
   <select class="input-serch" style="width: 80px;"  placeholder=" קטגוריה" (change)="searchByCaegory($event.target)" [(ngModel)]="selectCategories">
@@ -8,7 +44,7 @@
 <button (click)="unsearch()" *ngIf="isFilter">הסר סינון</button>
 
 </div>
-<button (click)="searchby()" *ngIf="!isFilter && publicRecipes">סנן</button>
+<button (click)="searchby()" *ngIf="!isFilter && publicRecipes">סנן</button> -->
 
 
 <div class="recipes">
@@ -19,3 +55,4 @@
 <button *ngIf="publicRecipes" class="rounded-button" (click)="movePage(-1)"><</button>
 <button *ngIf="publicRecipes" class="rounded-button" (click)="movePage(1)">></button>
 </div>
+

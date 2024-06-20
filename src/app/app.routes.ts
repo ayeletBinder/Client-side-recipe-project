@@ -12,6 +12,7 @@ import { PrivateRecipesComponent } from './components/private-recipes/private-re
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
+    // { path: 'home', component: HomeComponent, pathMatch: 'full' },
     { path: 'logIn', component: LoginComponent },
     { path: 'signUp', component: RegisterComponent },
     { path: 'publicRecipes', component: AllPublicRecipesComponent },
