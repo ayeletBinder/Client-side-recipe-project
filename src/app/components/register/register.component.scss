@@ -1,4 +1,6 @@
 
+@import '../../../../src/styles.scss';
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -36,16 +38,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  
-  .btn {
-    background-color: #b584be;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 4px;
-  }
+
   
   .btn:hover {
     background-color: #5e5a4e;

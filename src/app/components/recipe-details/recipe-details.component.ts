@@ -41,10 +41,13 @@ export class RecipeDetailsComponent implements OnInit {
     console.log("oo",this.products);
   }
   theInstructions(){
+    debugger
     if(this.recipe.instructions!=undefined){
-      debugger
+      
       this.instructions=this.recipe.instructions?.split("."); 
-      this.instructions.splice(this.instructions.length-1,1); 
+      console.log(this.instructions.length,"this.instructions.length");
+      if(this.instructions.length>1){
+      this.instructions.splice(this.instructions.length-1,1); }
       console.log('u',this.instructions);
     }
     else{

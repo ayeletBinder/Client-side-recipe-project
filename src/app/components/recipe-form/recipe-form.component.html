@@ -39,13 +39,14 @@
       <div class="form-group">
         <label>שכבות:</label>
         <div formArrayName="layers" class="layers-container">
-          <div *ngFor="let ch of layers.controls; let i = index" [formGroupName]="i" class="layer-item">
-            <h4>Layer {{ i + 1 }}</h4>
-            <label for="">תיאור השכבה</label>
-            <input type="text" formControlName="layersDescription" class="input-field"  *ngIf="recipe.layers" [ngModel]="recipe.layers[i].description"/>
-            <label for="">רשימת מוצרים לשכבה</label>
-            <textarea class="form-control" formControlName="products" rows="5" *ngIf="recipe.layers" [ngModel]="recipe.layers[i].products" required></textarea>
-            <hr>
+            <div *ngFor="let layer of layers.controls; let i = index" [formGroupName]="i" class="layer-item">
+              <h4>Layer {{ i + 1 }}</h4>
+              <label for="description">תיאור השכבה</label>
+              <input type="text" formControlName="description" class="input-field"/>
+              
+              <label for="products">רשימת מוצרים לשכבה</label>
+              <textarea class="form-control" formControlName="products" rows="5" required></textarea>
+              <hr>
           </div>
           <button type="button" class="btn btn-secondary" (click)="addLayer()">הוסף שכבה</button>
         </div>
@@ -59,14 +60,16 @@
       {{previewUrl}}
         <label for="recipeImage">תמונות:</label>
         <!-- [ngModel]="recipe.images" -->
-        <input type="file" [ngModel]="recipe.images" *ngIf="recipe.images"  class="form-control-file" (change)="onFileSelected($event)" id="images" formControlName="images" multiple >
+        <input type="file" [ngModel]="recipe.images"  class="form-control-file" (change)="onFileSelected($event)" id="images" formControlName="images" multiple >
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="recipeForm.invalid">אישור</button>
       <div *ngIf="successfull" class="successfull">!המתכון התווסף בהצלחה</div>
+      <!-- <div *ngIf="!successfull && usersService.isTokenExpired class="successfull">פג תוקף</div> -->
     </form>
   </div>
 </div>
 
   <!-- <button (click)="add()">add new</button> -->
+
 
 

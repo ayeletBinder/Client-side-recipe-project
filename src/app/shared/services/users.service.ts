@@ -69,8 +69,8 @@ export class UsersService {
     localStorage.removeItem('theToken');
   }
 
-  // isTokenExpired(){
-  //    const Expiry=(JSON.parse(atob(String(this.token).split('.')[1])).exp);
-  //    return Math.floor((new Date()).getTime()/1000)>=Expiry;
-  // }
+  isTokenExpired(){
+     const Expiry=(JSON.parse(atob(String(this.token).split('.')[1])).exp);
+     return Math.floor((new Date()).getTime()/1000)>=Expiry;
+  }
 }

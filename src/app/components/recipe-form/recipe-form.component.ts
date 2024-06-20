@@ -64,12 +64,7 @@ export class RecipeFormComponent implements OnInit {
       Validators.min(1),
       Validators.max(5),
     ]),
-    layers: new FormArray([
-      new FormGroup({
-        layersDescription: new FormControl('', Validators.required),
-        products: new FormControl('', Validators.required),
-      }),
-    ]),
+    layers: new FormArray([]),
     ingredients: new FormControl('', [Validators.required]),
     images: new FormControl(),
     IsPrivate: new FormControl('', [Validators.required]),
@@ -85,6 +80,7 @@ idUpdate: string|null=null;
 
 successfull: boolean=false;
   ngOnInit() {
+    this.addLayer();
     const idRecipe = this.route.snapshot.paramMap.get('id')?.toString();
     if(idRecipe){
       this.idUpdate=idRecipe;
@@ -118,12 +114,11 @@ successfull: boolean=false;
   }
 
   addLayer() {
-    this.layers.push(
-      new FormGroup({
-        layersDescription: new FormControl('', Validators.required),
-        products: new FormControl('', Validators.required),
-      })
-    );
+    const layerGroup = this.fb.group({
+      description: ['', Validators.required],
+      products: ['', Validators.required]
+    });
+    this.layers.push(layerGroup);
   }
   constructor(private fb: FormBuilder,private route:ActivatedRoute,private router:Router) {
     this.recipeForm = new FormGroup({
@@ -135,12 +130,7 @@ successfull: boolean=false;
         Validators.min(1),
         Validators.max(5),
       ]),
-      layers: new FormArray([
-        new FormGroup({
-          layersDescription: new FormControl('', Validators.required),
-          products: new FormControl('', Validators.required),
-        }),
-      ]),
+      layers: new FormArray([]),
       images: new FormControl(),
       IsPrivate: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
@@ -150,12 +140,9 @@ successfull: boolean=false;
   }
   onSubmit() {
     debugger
-    // if (this.recipeForm.invalid) {
-    //   return; 
-    // }
     // const formValue = this.recipeForm.value;
     // this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instructions:formValue.instructions, 
-    //           layers:[formValue.layers.map((obj:any) => ({ description:obj.layersDescription ,products:obj.products }))],
+    //           layers:[formValue.layers.map((obj:any) => ({ description:obj.description ,products:obj.products }))],
     //           IsPrivate:formValue.IsPrivate?true:false,images:formValue.images,user:{ _id: this.usersService.user?._id,name:this.usersService.user?.name }}
     // console.log(this.recipe);
     // this.recipesService.addRecipe(this.recipe).subscribe(response => {
