@@ -29,18 +29,17 @@ export class RecipesService {
     return null;
   }
   usersService = inject(UsersService);
-  addRecipe(r: Recipe): Observable<any> {
-    debugger;
-    if (r.IsPrivate) {
-      this.recipes.push(r);
-    }
+  addRecipe(r:FormData): Observable<any> {
+
+    // if(r.IsPrivate){   this.recipes.unshift(r)    }
     const token = this.usersService.token;
     let headers = new HttpHeaders();
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
-    r.user={_id:this.usersService.user?._id,name:this.usersService.user?.name}
-    return this.http.post(this.recipesURL, r,    { headers }    );
+    return this.http.post(this.recipesURL, r ,{ headers });
+        // if(recipe.IsPrivate){   this.recipes.unshift(recipe)    }
+
   }
 
   updateRecipe(id: string, r: Recipe) {
@@ -50,7 +49,7 @@ export class RecipesService {
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
-    r.user={_id:this.usersService.user?._id,name:this.usersService.user?.name};
+    // r.user={_id:this.usersService.user?._id,name:this.usersService.user?.name};
     return this.http.patch(`${this.recipesURL}/${id}`, r, { headers } );
   }
   deleteRecipe(id: string) {

@@ -19,6 +19,11 @@
           <!-- [selected]="c._id==recipe.category"  -->
           <option *ngFor="let c of categories" [value]="c.description" [id]="c.description"  class="selected-category">{{c.description}}</option>
         </select>
+        <label for="">הוספת קטגוריה</label>
+        <input class="input-field"  type="text" #newCategory/>
+        <!-- categories.push({description:(newCategory) ,recipe:[]})" -->
+        <button type="button" (click)="addCategory(newCategory);" class="btn btn-secondary" > הוסף קטגוריה</button>
+
       </div>
       <div class="form-group">
         <label for="preparationTime">(בדקות) משך ההכנה:</label>
@@ -56,12 +61,18 @@
         <input type="checkbox" [ngModel]="recipe.IsPrivate??false" formControlName="IsPrivate" />
       </div>
       <div class="form-group">        
-        <img *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image">
+        <!-- <img *ngIf="previewUrl" [src]="previewUrl" alt="Selected Image">
       {{previewUrl}}
         <label for="recipeImage">תמונות:</label>
-        <!-- [ngModel]="recipe.images" -->
-        <input type="file" [ngModel]="recipe.images"  class="form-control-file" (change)="onFileSelected($event)" id="images" formControlName="images" multiple >
-      </div>
+        // [ngModel]="recipe.images" 
+        <input type="file" [ngModel]="recipe.images"  class="form-control-file" (change)="onFileSelected($event)" id="images" formControlName="images" multiple >-->
+        <div class="container">
+            <div class="form-group">
+              <label for="imageUpload">Upload Image:</label>
+              <input type="file" id="imageUpload" (change)="onFileSelected($event)" class="form-control" />
+            </div>
+        </div>
+      </div> 
       <button type="submit" class="btn btn-primary" [disabled]="recipeForm.invalid">אישור</button>
       <div *ngIf="successfull" class="successfull">!המתכון התווסף בהצלחה</div>
       <!-- <div *ngIf="!successfull && usersService.isTokenExpired class="successfull">פג תוקף</div> -->

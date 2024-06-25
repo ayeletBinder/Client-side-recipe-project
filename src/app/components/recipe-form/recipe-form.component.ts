@@ -17,6 +17,7 @@ import { Recipe } from '../../shared/models/recipe';
 import { RecipesService } from '../../shared/services/recipes.service';
 import { UsersService } from '../../shared/services/users.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
@@ -35,24 +36,23 @@ export class RecipeFormComponent implements OnInit {
   recipesService = inject(RecipesService);
   usersService = inject(UsersService);
   previewUrl: string = '';
-// add() {
-//   debugger
-//   this.recipesService.addRecipe({
-//     name:"oooooooooooooooooo",
-//   description:"aaa",
-//   category:"9",
-//   preparationTime:50,
-//   DifficultyLevel:1,
-//   Addeddate:new Date(),
-//   layers:[{"description":"njyn","products":"y  y j  tj ig"}],
-//   instruction:"ug i.5hyvhu.j57. j7.",
-//   images:"an.png",
-//   IsPrivate:false,
-//   user:{name:"ayelet",_id:"663d0b74e155ea828a2594d4"}
-//   }).subscribe(response => {});
+  // add() {
+  //   debugger
+  //   this.recipesService.addRecipe({
+  //     name:"oooooooooooooooooo",
+  //   description:"aaa",
+  //   category:"9",
+  //   preparationTime:50,
+  //   DifficultyLevel:1,
+  //   Addeddate:new Date(),
+  //   layers:[{"description":"njyn","products":"y  y j  tj ig"}],
+  //   instruction:"ug i.5hyvhu.j57. j7.",
+  //   images:"an.png",
+  //   IsPrivate:false,
+  //   user:{name:"ayelet",_id:"663d0b74e155ea828a2594d4"}
+  //   }).subscribe(response => {});
 
-// }
-
+  // }
 
   recipeForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -73,39 +73,51 @@ export class RecipeFormComponent implements OnInit {
   });
   // { _id:"1",description:"ttt",recipes:[{_id:'11',name:"String",images:[""] }]}
   categories: Category[] = [];
-  recipe: Recipe = { layers: [{description:'',products:''}] ,preparationTime:0};
-  p=[];
-category: any="aaa";
-idUpdate: string|null=null;
+  recipe: Recipe = {
+    layers: [{ description: '', products: '' }],
+    preparationTime: 0,
+  };
+  p = [];
+  category: any = 'aaa';
+  idUpdate: string | null = null;
 
-successfull: boolean=false;
+  successfull: boolean = false;
+  // newCategory: Category |undefined;
   ngOnInit() {
     this.addLayer();
     const idRecipe = this.route.snapshot.paramMap.get('id')?.toString();
-    if(idRecipe){
-      this.idUpdate=idRecipe;
-      this.recipesService.getRecipeById(idRecipe)?.subscribe((data)=>{
-        if(data){
-          this.recipe=data as any;
-          this.previewUrl =this.recipe && this.recipe.images ? this.recipe.images : '';
-          console.log("ppp",this.recipe);
+    if (idRecipe) {
+      this.idUpdate = idRecipe;
+      this.recipesService.getRecipeById(idRecipe)?.subscribe((data) => {
+        if (data) {
+          this.recipe = data as any;
+          this.previewUrl =
+            this.recipe && this.recipe.images ? this.recipe.images : '';
+          console.log('ppp', this.recipe);
         }
-    });}
-    if(this.categoriesService.categories==undefined){
-      this.categoriesService.GetAllCategories().subscribe((data)=>{
-        this.categories=data as any[];
-        this.categoriesService.categories?.push(...this.categories);
-        console.log(this.categoriesService.categories,'this.categoriesService.categories');
-        console.log(data,'data קריאת שרת');
-        console.log(this.usersService.correctUser,'this.usersService.correctUser');
-      })
+      });
     }
-    else{
+    if (this.categoriesService.categories == undefined) {
+      this.categoriesService.GetAllCategories().subscribe((data) => {
+        this.categories = data as any[];
+        this.categoriesService.categories?.push(...this.categories);
+        console.log(
+          this.categoriesService.categories,
+          'this.categoriesService.categories'
+        );
+        console.log(data, 'data קריאת שרת');
+        console.log(
+          this.usersService.correctUser,
+          'this.usersService.correctUser'
+        );
+      });
+    } else {
       this.categories.push(...this.categoriesService.categories);
-      console.log(this.categories,'data קריאת שרת -ללא');
-      console.log(this.categoriesService.categories,'this.categoriesService.categories');
-
-
+      console.log(this.categories, 'data קריאת שרת -ללא');
+      console.log(
+        this.categoriesService.categories,
+        'this.categoriesService.categories'
+      );
     }
   }
 
@@ -116,11 +128,15 @@ successfull: boolean=false;
   addLayer() {
     const layerGroup = this.fb.group({
       description: ['', Validators.required],
-      products: ['', Validators.required]
+      products: ['', Validators.required],
     });
     this.layers.push(layerGroup);
   }
-  constructor(private fb: FormBuilder,private route:ActivatedRoute,private router:Router) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl(),
@@ -136,54 +152,87 @@ successfull: boolean=false;
       category: new FormControl('', [Validators.required]),
       instructions: new FormControl('', [Validators.required]),
     });
-
   }
   onSubmit() {
-    debugger
-    // const formValue = this.recipeForm.value;
-    // this.recipe={name:formValue.name,description:formValue.description,category:formValue.recipeTags,preparationTime:formValue.preparationTime,DifficultyLevel:formValue.DifficultyLevel,instructions:formValue.instructions, 
-    //           layers:[formValue.layers.map((obj:any) => ({ description:obj.description ,products:obj.products }))],
-    //           IsPrivate:formValue.IsPrivate?true:false,images:formValue.images,user:{ _id: this.usersService.user?._id,name:this.usersService.user?.name }}
-    // console.log(this.recipe);
-    // this.recipesService.addRecipe(this.recipe).subscribe(response => {
-    //   console.log('POST request successful:', response);
-    // }, error => {
-    //   console.error('Error in POST request:', error);
-    // });
-
-    if (this.recipeForm.invalid ) {
+    if (this.recipeForm.invalid) {
       return;
     }
+  
     const formData = new FormData();
-    formData.append('caption', this.recipeForm.value);
-    if(!this.idUpdate){
-    this.recipesService.addRecipe(this.recipeForm.value)
-      .subscribe(response => {
-        console.log('Image uploaded successfully!', response);
-        this.successfull=true;
-      }, error => {
-        console.error('Error uploading image:', error);
-      });
+    const p = this.recipeForm.value;
+  
+    formData.append('name', p.name);
+    formData.append('description', p.description);
+    formData.append('preparationTime', p.preparationTime.toString());
+    formData.append('DifficultyLevel', p.DifficultyLevel);
+    formData.append('IsPrivate', p.IsPrivate.toString());
+    formData.append('instructions', p.instructions);
+  
+    const layers = p.layers.map((obj: any) => ({ description: obj.description, products: obj.products }));
+    formData.append('layers', JSON.stringify(layers));
+  
+    const categories = p.category.map((category: string) => category);
+    formData.append('category', JSON.stringify(categories));
+  
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
     }
-    else{
-      this.recipesService.updateRecipe(this.idUpdate,this.recipeForm.value)
-      .subscribe(Response => {
-        console.log('Image update successfully!', Response);
-        this.successfull=true;
-      }, error => {
-        console.error('Error uploading image:', error);
+  
+    const user = { _id: this.usersService.user?._id, name: this.usersService.user?.name };
+    formData.append('user', JSON.stringify(user));
+  
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+  
+    this.recipesService.addRecipe(formData).subscribe(
+      (response) => {
+        console.log('Recipe uploaded successfully!', response);
+        this.successfull = true;
+      },
+      (error) => {
+        console.error('Error uploading recipe:', error);
+      }
+    );
+  }
+  
+
+  addCategory(categoryDescription: HTMLInputElement) {
+    if (
+      categoryDescription.value != '' &&
+      this.categories.map((c) => {
+        return c.description != categoryDescription.value;
+      })
+    ) {
+      this.categories.push({
+        description: categoryDescription.value,
+        recipes: [{ _id: '', name: '', images: [''] }],
+        _id: '',
       });
     }
   }
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    if (typeof selectedFile === 'object' && selectedFile instanceof Blob){
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        this.previewUrl = reader.result as string;
-      };
-      reader.readAsDataURL(selectedFile);
+  selectedFile: File | null = null;
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
     }
+    if (typeof this.selectedFile === 'object' && this.selectedFile instanceof Blob) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            this.previewUrl = reader.result as string;
+          };
+          reader.readAsDataURL(this.selectedFile);
+  }
+  // onFileSelected(event: any) {
+  //   const selectedFile = event.target.files[0];
+  //   if (typeof selectedFile === 'object' && selectedFile instanceof Blob) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       this.previewUrl = reader.result as string;
+  //     };
+  //     reader.readAsDataURL(selectedFile);
+  //   }
   }
 }
 

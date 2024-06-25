@@ -7,8 +7,8 @@
         <h2>:המתכונים הכי חדשים</h2>
         <div class="recipes">
             <!-- Example recipes, replace with dynamic content as needed -->
-            <div class="recipe" *ngFor="let item of filterListTime; let i = index">
-                <!-- <img [src]="item.images" alt=`Recipe ${$i}` > -->
+            <div class="recipe" *ngFor="let item of filterListTime; let i = index"  style="    width: 20vw;" >
+                <img [src]="item.images" style="width: 15vw;     height: 30vh;   object-fit: cover;" >
                 <a (click)="navToNewRecipe(i)">{{item.name}}</a>
             </div>
         </div>
@@ -19,8 +19,8 @@
             <!-- Example recipes, replace with dynamic content as needed -->
             <div class="recipes">
                 <!-- Example recipes, replace with dynamic content as needed -->
-                <div class="recipe" *ngFor="let item of filterListTime; let i = index">
-                    <!-- <img [src]="item.images" alt=`Recipe ${$i}` > -->
+                <div class="recipe" *ngFor="let item of filterListTime; let i = index"  style="    width: 20vw; " >
+                    <img [src]="item.images"  style="width: 15vw;  height: 30vh;   object-fit: cover;"  >
                     <a (click)="navToTimeRecipe(i)">{{item.name}}</a>
                 </div>
             </div>

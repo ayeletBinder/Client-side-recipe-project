@@ -6,23 +6,23 @@ import { LucideAngularModule, CookingPot } from 'lucide-angular';
 import { StarsDifficultyLevelPipe } from '../../shared/pipes/stars-difficulty-level.pipe';
 import { TimeFormatPipe } from '../../shared/pipes/time-format.pipe';
 import { CommonModule, NgFor } from '@angular/common';
+import { InstructionsPipe } from '../../shared/pipes/instructions.pipe';
 
 @Component({
   selector: 'app-recipe-details',
   standalone: true,
-  imports: [NgFor,LucideAngularModule,StarsDifficultyLevelPipe,TimeFormatPipe,CommonModule],
+  imports: [NgFor,LucideAngularModule,StarsDifficultyLevelPipe,TimeFormatPipe,CommonModule,InstructionsPipe],
   templateUrl: './recipe-details.component.html',
   styleUrl: './recipe-details.component.scss',
 })
 export class RecipeDetailsComponent implements OnInit {
-
-
+  
   constructor(private route: ActivatedRoute) {}
   recipeService = inject(RecipesService);
   recipe: Recipe = {};
   products: string[][]=[];
   instructions: string[]=[];
-  ngOnInit() {
+  ngOnInit() {    
     const idRecipe = this.route.snapshot.paramMap.get('id');
     console.log(idRecipe);
     this.recipeService.getRecipeById(idRecipe)?.subscribe((data) => {
@@ -35,7 +35,7 @@ export class RecipeDetailsComponent implements OnInit {
   theProducts(){
     this.recipe.layers?.forEach((layer) => {
       if (layer.products) {
-        this.products.push( layer.products.split(" ")); 
+        this.products.push( layer.products.split(",")); 
       }
     });
     console.log("oo",this.products);
@@ -43,8 +43,8 @@ export class RecipeDetailsComponent implements OnInit {
   theInstructions(){
     debugger
     if(this.recipe.instructions!=undefined){
-      
       this.instructions=this.recipe.instructions?.split("."); 
+      console.log("i",this.instructions);
       console.log(this.instructions.length,"this.instructions.length");
       if(this.instructions.length>1){
       this.instructions.splice(this.instructions.length-1,1); }
@@ -52,7 +52,6 @@ export class RecipeDetailsComponent implements OnInit {
     }
     else{
       console.log("oooooooooooooooo",this.recipe.instructions);
-      
     }
 
   }

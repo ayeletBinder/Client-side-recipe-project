@@ -52,7 +52,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './all-recipes.component.scss',
 })
 export class AllRecipesComponent implements OnChanges {
-
   // יש לי בעיה עם העברה לעמוד הבא כאשר יש לי סינון??????????
   categoriesService = inject(CategoriesService);
   recipesService = inject(RecipesService);
@@ -128,7 +127,14 @@ export class AllRecipesComponent implements OnChanges {
   }
 
   movePage(index: number) {
-    if (!this.isFilter) {
+    debugger
+    if(this.privateRecipes && !this.publicRecipes){
+      this.recipesService.getAllRecipeByUserId(this.usersservice.user?._id).subscribe((data)=>{
+        this.recipes=data as any[];
+        console.log(data,"private - recipes");
+    });
+    }
+    if (!this.isFilter && !this.privateRecipes ) {
       console.log("p",this.p);
       if (index === 1 || this.p!== 0) {
         this.recipesService
@@ -141,11 +147,6 @@ export class AllRecipesComponent implements OnChanges {
       }
     } 
     else {
-       // this.filteredRecipes = this.recipes.slice(
-        //   (this.indexPage - 1) * 12 + 1,
-        //   this.indexPage * 12
-        // );
-        // if (!this.filteredRecipes[0]) {
         if (false) {
           //לא לתת להתקדם לעמוד הבא...
         }

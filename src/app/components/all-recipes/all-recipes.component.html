@@ -52,7 +52,7 @@
   <app-recipe class="cardRecipe" [recipe]="r" [typeRecipe]="publicRecipes?true:false"></app-recipe>
   }
 </div>
-<button *ngIf="publicRecipes" class="rounded-button" (click)="movePage(-1)"><</button>
-<button *ngIf="publicRecipes" class="rounded-button" (click)="movePage(1)">></button>
+<button  class="rounded-button" (click)="movePage(-1)"><</button>
+<button  class="rounded-button" (click)="movePage(1)">></button>
 </div>
 

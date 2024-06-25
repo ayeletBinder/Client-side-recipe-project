@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit{
       this.filterList = this.recipes.slice().sort((a: Recipe, b: Recipe) => {
         const dateA = a.Addeddate ? new Date(a.Addeddate) : new Date();
         const dateB = b.Addeddate ? new Date(b.Addeddate) : new Date();
-    
         return dateB.getTime() - dateA.getTime(); // Sort by latest date (descending order)
       });
     
@@ -47,6 +46,7 @@ export class HomeComponent implements OnInit{
     this.recipesService.getAllRecipe('',1,Math.min()).subscribe((data)=>{
       this.recipes=data as any[];
       console.log("public in",data);
+      // console.log("after image",this.recipes[50].images);
       this.lessTime();
       this.latest();
     });
