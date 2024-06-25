@@ -8,7 +8,7 @@ $white-color: #ffffff;
   background-color: #f4f4f4;
 }
 body{
-  background-color: #f4f4f4;
+  background-color: #f4f4f4;;
 }
 
 .recipe-page{
@@ -27,7 +27,7 @@ body{
 }
 
 .cardRecipe{
-  background-color: $white-color;
+  // background-color: $white-color;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -76,7 +76,7 @@ body{
   border-radius: 50px; 
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
-  transition: background-color 0.2s ease-in-out; 
+  // transition: background-color 0.2s ease-in-out; 
   margin-left: 30vw;
 
 
