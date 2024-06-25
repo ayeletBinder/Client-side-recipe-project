@@ -1,0 +1,46 @@
+footer {
+    background-color: #ce9494;
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  footer .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  footer .about {
+    max-width: 400px;
+    text-align: left;
+  }
+  
+  footer .about img {
+    max-width: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  footer .about p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  footer .social-links {
+    display: flex;
+    justify-content: center;
+  }
+  
+  footer .social-links a {
+    color: black;
+    margin: 0 10px;
+    font-size: 24px;
+    transition: color 0.3s;
+  }
+  
+  footer .social-links a:hover {
+    color: #ff6347;
+  }
+  

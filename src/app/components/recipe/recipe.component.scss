@@ -1,0 +1,27 @@
+
+.recipe-card {
+
+
+  .recipe-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .recipe-content {
+    padding: 1rem;
+    .recipe-name {
+      font-size: 1.5rem;
+      color: pink;
+      margin: 0;
+    }
+    .recipe-description {
+      font-size: 1rem;
+      color: black;
+      margin-top: 0.5rem;
+    }
+  }
+}
+.rows{
+  display: grid;
+  grid-column: auto auto auto auto;
+}

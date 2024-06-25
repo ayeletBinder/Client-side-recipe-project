@@ -1,0 +1,3 @@
+<div  (click)="recipesIntheCategories()" class="recipe-card" >
+      @for (c of categories; track $index) { <div class="recipe-content">{{ c.description}}</div>}
+</div>

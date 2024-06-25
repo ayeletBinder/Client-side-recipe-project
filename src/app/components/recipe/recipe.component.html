@@ -1,0 +1,27 @@
+<div  class="recipe-card">
+    <img [src]="recipe.images" [alt]="recipe.images" class="recipe-photo">
+
+    <div class="recipe-content"><div class="rows">
+      <h2 class="recipe-name">{{ recipe.name }}</h2>
+
+      <p class="recipe-description">{{ recipe.preparationTime | timeFormat }}</p>
+      <span>
+        <img
+          *ngFor="let _ of getArray(); let i = index"
+          src="star (1).png"
+          alt=""
+          height="15px"
+          width="15px"
+        />
+        <img
+          *ngFor="let _ of getOpositeArray(); let i = index"
+          src="star.png"
+          alt=""
+          height="15px"
+          width="15px"
+        />
+      </span>
+      <button  (click)="recipeDetails()">details</button>
+      <button *ngIf="typeRecipe==false" (click)="updateREcipe()" style="margin-top: 2px;">update</button>
+    </div>
+   </div>

@@ -1,0 +1,45 @@
+ <form  #form="ngForm" class="allFilter">
+    <p >:סינונים</p>
+
+    <div>
+        <!-- כוכביות -->
+    <label for="">:דרגת קושי</label>
+        <input type="number" #DifficultyLevel>
+    </div>
+
+    <div>
+        <!-- ציר זמן בדקות -->
+    <label for="">:זמן הכנה</label>
+    <input #time  type="range" min="0" max="180" value="50" ngModel name="Prepertiontime" step="1" class="custom-slider">
+
+    </div>
+
+    <div>
+        <!-- select multiple -->
+    <p for="">קטגוריה</p>
+    <select id="recipeTags" #selectCategory  class="form-control select" multiple>
+      <option *ngFor="let c of categories" name="c.description" id="c.description">{{c.description}}</option>
+    </select>
+      
+    <!-- <mat-form-field>
+      <mat-select formControl="toppings" multiple>
+        @for (topping of categories; track topping) {
+          <mat-option [value]="topping._id">{{topping.description}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field> -->
+
+    <!-- <mat-form-field>
+      <mat-select #selectCategory name="selectCategory" multiple>
+        @for (topping of categories; track topping) {
+          <mat-option [value]="topping">{{topping}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field> -->
+
+
+    </div>
+    <!-- selectCategory.selectedIndex -->
+    <button (click)="search(+DifficultyLevel.value,selectCategories,+time.value)" >חפש</button>
+
+</form>

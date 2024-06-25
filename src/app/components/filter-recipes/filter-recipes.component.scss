@@ -1,0 +1,85 @@
+// Variables
+$slider-background: #dcd1ab;
+$slider-color: #f38ff3;
+
+.allFilter{
+    border: 2px solid pink;
+    padding: 4%;
+    border-radius: 25px;
+
+}
+input[type="number"]{
+    width: 15px; /* Adjust width as needed */
+    height: 6px; /* Adjust height as needed */
+    padding: 10px;
+    // border: none;
+    border-radius: 25px; /* Adjust for desired roundness */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    outline: none; /* Remove default outline */
+    font-size: 16px;
+    text-align: center;
+  
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none; /* Hide default spinner buttons */
+      margin: 0; /* Remove default spacing */
+      padding: 0; /* Remove default padding */
+      border: none; /* Remove default border */
+      background-color: transparent; /* Make buttons transparent */
+      cursor: pointer; /* Allow click interaction */
+    }
+  
+    &::-webkit-outer-spin-button {
+      right: 10px; /* Position right button */
+    }
+  
+    &:focus {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhance shadow on focus */
+    }
+  }
+// Slider Styles
+.custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: $slider-background;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 5px;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: $slider-color;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: $slider-color;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+button {
+  background-color: pink; /* Green */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%; /* Round button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.select{
+  width: 20vw;
+  height: 10vh;
+}
